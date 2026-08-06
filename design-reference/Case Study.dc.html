@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Case study — dengue outbreak forecasting dataset and model for SOCCSKSARGEN. Reconciling case records, Earth Engine rasters and NAMRIA shapefiles into a 2,918-row dataset. Published, IJLTEMAS.">
+<title>Dengue forecasting dataset &amp; model — case study — Shua.dev</title>
+<link rel="stylesheet" href="_ds/nocturne-1295f0f7-2ded-4fad-8535-3566f371ce8f/styles.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&amp;display=swap">
+<script src="_ds/nocturne-1295f0f7-2ded-4fad-8535-3566f371ce8f/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+:root { --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+body { margin: 0; scroll-behavior: smooth; }
+a { color: var(--color-accent); }
+a:hover { color: var(--color-accent-300); }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important } }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);min-height:100vh;font-family:var(--font-body)">
+
+<header style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, #161826 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-divider)">
+  <nav class="nav" style="max-width:880px;margin:0 auto;padding:12px 24px" aria-label="Primary">
+    <a class="nav-brand" href="Portfolio.dc.html" style="display:flex;align-items:center;gap:9px;text-decoration:none">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:7px;border:1px solid color-mix(in srgb, var(--color-accent) 55%, transparent);background:color-mix(in srgb, var(--color-accent) 12%, transparent)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 9 10 12 7 15"></polyline><line x1="13" y1="15" x2="17" y2="15"></line></svg>
+      </span>
+      <span>shua</span>
+    </a>
+    <a href="Portfolio.dc.html" style="font-family:var(--font-mono);font-size:13px;text-decoration:none">← cd ..</a>
+    <a class="btn btn-primary" href="Portfolio.dc.html#contact" style="font-size:13px">Contact</a>
+  </nav>
+</header>
+
+<main style="max-width:880px;margin:0 auto;padding:0 24px 96px">
+
+  <section data-screen-label="Case study header" style="padding:72px 0 48px">
+    <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-accent);margin:0 0 20px">$ cat research/dengue-forecasting/case-study.md</p>
+    <h1 style="font-size:clamp(32px,5vw,48px);margin:0 0 16px;letter-spacing:-0.03em;text-wrap:balance">Dengue Outbreak Forecasting Dataset &amp; Model</h1>
+    <p style="font-size:18px;line-height:1.7;max-width:58ch;color:color-mix(in srgb, var(--color-text) 82%, transparent);text-wrap:pretty">A monthly 2015–2024 dataset for SOCCSKSARGEN, assembled and reconciled from three incompatible source types, and the forecasting model built on it. First author of four. Published in IJLTEMAS.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin:26px 0 24px">
+      <span class="tag tag-accent">Published research</span>
+      <span class="tag tag-neutral">Dec 2024 – May 2025</span>
+      <span class="tag tag-neutral">Dataset assembly</span>
+      <span class="tag tag-neutral">Google Earth Engine</span>
+      <span class="tag tag-neutral">NAMRIA shapefiles</span>
+      <span class="tag tag-neutral">Forecasting</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <a class="btn btn-primary" href="https://doi.org/10.51583/IJLTEMAS.2026.150600192" target="_blank" rel="noreferrer" style="font-size:13px">Read the paper (DOI)</a>
+      <a class="btn btn-secondary" href="https://github.com/shuakyle21" target="_blank" rel="noreferrer" style="font-size:13px">GitHub</a>
+    </div>
+    <p style="font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-600);margin-top:18px">IJLTEMAS Vol. XV Issue VI · DOI: 10.51583/IJLTEMAS.2026.150600192</p>
+  </section>
+
+  <div style="width:100%;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+    <image-slot style="width:100%;aspect-ratio:16/9" id="cs-hero" shape="rect" placeholder="Hero figure — case curve, or the study area map"></image-slot>
+  </div>
+
+  <section data-screen-label="Metrics" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;padding:40px 0 12px">
+    <div class="card elev-sm" style="gap:4px">
+      <span style="font-family:var(--font-heading);font-size:29px;letter-spacing:-0.02em">2,918</span>
+      <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-500)">Rows, monthly resolution</span>
+    </div>
+    <div class="card elev-sm" style="gap:4px">
+      <span style="font-family:var(--font-heading);font-size:29px;letter-spacing:-0.02em">19</span>
+      <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-500)">Columns, documented</span>
+    </div>
+    <div class="card elev-sm" style="gap:4px">
+      <span style="font-family:var(--font-heading);font-size:29px;letter-spacing:-0.02em">10 yrs</span>
+      <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-500)">2015 through 2024</span>
+    </div>
+    <div class="card elev-sm" style="gap:4px">
+      <span style="font-family:var(--font-heading);font-size:29px;letter-spacing:-0.02em">3</span>
+      <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-500)">Incompatible source types</span>
+    </div>
+  </section>
+
+  <section data-screen-label="Problem" style="padding:52px 0 0">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:16px"># 01 / problem</h6>
+    <h2 style="font-size:clamp(26px,3.4vw,32px);margin-bottom:16px">The data existed. It just wasn’t one dataset.</h2>
+    <p style="font-size:16px;line-height:1.75;max-width:64ch;color:color-mix(in srgb, var(--color-text) 82%, transparent);text-wrap:pretty">Forecasting dengue outbreaks in SOCCSKSARGEN needs case counts, climate, and geography in the same table. Those three things live in three different institutions, in three formats that do not agree on units, resolution, or place names: DOH-CHD SOCCSKSARGEN surveillance records, Google Earth Engine rasters, and NAMRIA shapefiles.</p>
+    <p style="font-size:16px;line-height:1.75;max-width:64ch;color:color-mix(in srgb, var(--color-text) 82%, transparent);text-wrap:pretty">Before any modelling could start, someone had to sit with all three and reconcile them — and then be able to say, for every value in the result, where it came from.</p>
+    <div class="card elev-sm" style="margin-top: 26px; padding: 18px; gap: 10px; border-left: 2px solid var(--color-accent); border-style: none">
+      <span class="card-kicker" style="font-family:var(--font-mono)">Who it was for</span>
+      <p style="margin:0;font-size:15px;line-height:1.7;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Regional health planning: the people who decide where vector control goes and when. A forecast is only useful to them if the inputs are auditable and the failure modes are stated.</p>
+    </div>
+  </section>
+
+  <section data-screen-label="Constraints" style="padding:52px 0 0">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:16px"># 02 / constraints and tradeoffs</h6>
+    <h2 style="font-size:clamp(26px,3.4vw,32px);margin-bottom:24px">What the sources allowed, and what they cost</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+      <div class="card elev-sm" style="padding:20px;gap:8px">
+        <span class="card-kicker" style="font-family:var(--font-mono)">Constraint</span>
+        <h3 class="card-title">Three institutions, three formats</h3>
+        <p class="card-body" style="font-size:14px">Tabular case records, raster climate data, and vector boundaries had to be reconciled before they could sit in one row together.</p>
+      </div>
+      <div class="card elev-sm" style="padding:20px;gap:8px">
+        <span class="card-kicker" style="font-family:var(--font-mono)">Tradeoff</span>
+        <h3 class="card-title">Monthly resolution, not weekly</h3>
+        <p class="card-body" style="font-size:14px">Monthly is the resolution every source could support consistently across ten years. Weekly would have meant gaps, and gaps get filled with assumptions.</p>
+      </div>
+      <div class="card elev-sm" style="padding:20px;gap:8px">
+        <span class="card-kicker" style="font-family:var(--font-mono)">Constraint</span>
+        <h3 class="card-title">Completeness checked first</h3>
+        <p class="card-body" style="font-size:14px">Completeness and consistency were verified before any pre-modelling method ran. Cleaning a dataset you have not audited hides the problem instead of fixing it.</p>
+      </div>
+      <div class="card elev-sm" style="padding:20px;gap:8px">
+        <span class="card-kicker" style="font-family:var(--font-mono)">Tradeoff</span>
+        <h3 class="card-title">Report the misses, not only the wins</h3>
+        <p class="card-body" style="font-size:14px">The model still underpredicts extreme spikes. That is in the paper, next to the results, because a planner needs to know where the forecast is weakest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Architecture" style="padding:52px 0 0">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:16px"># 03 / data flow</h6>
+    <h2 style="font-size:clamp(26px,3.4vw,32px);margin-bottom:16px">From three sources to one table</h2>
+    <p style="font-size:16px;line-height:1.75;max-width:64ch;color:color-mix(in srgb, var(--color-text) 82%, transparent);text-wrap:pretty">Surveillance records came from the regional health office, climate variables from DOST PAG-ASA and Earth Engine, boundaries from NAMRIA. Each stream was checked on its own, then joined on municipality and month, then checked again as a whole before modelling.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin:26px 0 20px;font-family:var(--font-mono);font-size:13px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+        <span style="padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-divider)">DOH-CHD case records</span>
+        <span style="padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-divider)">Earth Engine rasters</span>
+        <span style="padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-divider)">NAMRIA shapefiles</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding-left:18px">
+        <span style="color:var(--color-neutral-600)">↳</span>
+        <span style="padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-accent);color:var(--color-accent-300)">completeness &amp; consistency check</span>
+        <span style="color:var(--color-accent)">→</span>
+        <span style="padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-divider)">join on municipality × month</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding-left:36px">
+        <span style="color:var(--color-neutral-600)">↳</span>
+        <span style="padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-divider)">2,918 × 19 dataset + data dictionary</span>
+        <span style="color:var(--color-accent)">→</span>
+        <span style="padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-divider)">pre-modelling</span>
+        <span style="color:var(--color-accent)">→</span>
+        <span style="padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-divider)">forecast + error report</span>
+      </div>
+    </div>
+    <figure>
+      <div style="width:100%;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+        <image-slot style="width:100%;aspect-ratio:16/10" id="cs-arch" shape="rect" placeholder="Drop the data-flow diagram from the paper"></image-slot>
+      </div>
+      <figcaption>The full pipeline as published, including the reconciliation steps between source types.</figcaption>
+    </figure>
+  </section>
+
+  <section data-screen-label="Figures" style="padding:52px 0 0">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:16px"># 04 / figures</h6>
+    <h2 style="font-size:clamp(26px,3.4vw,32px);margin-bottom:24px">Three views worth showing</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <figure>
+        <div style="width:100%;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <image-slot style="width:100%;aspect-ratio:4/3" id="cs-fig-1" shape="rect" placeholder="Study area map"></image-slot>
+        </div>
+        <figcaption>Study area — SOCCSKSARGEN municipalities, from the NAMRIA boundaries.</figcaption>
+      </figure>
+      <figure>
+        <div style="width:100%;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <image-slot style="width:100%;aspect-ratio:4/3" id="cs-fig-2" shape="rect" placeholder="Monthly case series, 2015–2024"></image-slot>
+        </div>
+        <figcaption>Ten years of monthly case counts, after reconciliation.</figcaption>
+      </figure>
+      <figure>
+        <div style="width:100%;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <image-slot style="width:100%;aspect-ratio:4/3" id="cs-fig-3" shape="rect" placeholder="Predicted vs actual, with the spike underprediction visible"></image-slot>
+        </div>
+        <figcaption>Predicted against actual — the extreme spikes are where it underpredicts.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section data-screen-label="Results" style="padding:52px 0 0">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:16px"># 05 / results</h6>
+    <h2 style="font-size:clamp(26px,3.4vw,32px);margin-bottom:22px">What came out of it</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Output</th>
+          <th scope="col">Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dataset</td>
+          <td>2,918 rows × 19 columns, monthly, 2015–2024, with a data dictionary</td>
+        </tr>
+        <tr>
+          <td>Sources reconciled</td>
+          <td>DOH-CHD SOCCSKSARGEN, DOST PAG-ASA, Google Earth Engine, NAMRIA</td>
+        </tr>
+        <tr>
+          <td>Publication</td>
+          <td>IJLTEMAS Vol. XV Issue VI — first author of four</td>
+        </tr>
+        <tr>
+          <td>Stated limitation</td>
+          <td>Remaining underprediction of extreme spikes, reported alongside results</td>
+        </tr>
+        <tr>
+          <td>My role</td>
+          <td>Sourcing, reconciliation, completeness and consistency checks, first-author write-up</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section data-screen-label="Lessons" style="padding:52px 0 0">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:16px"># 06 / lessons</h6>
+    <h2 style="font-size:clamp(26px,3.4vw,32px);margin-bottom:20px">Lessons learned</h2>
+    <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:14px;max-width:64ch">
+      <li style="font-size:16px;line-height:1.75;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Most of the work was reconciliation, not modelling. The dataset was the contribution; the model was what proved it was usable.</li>
+      <li style="font-size:16px;line-height:1.75;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Check completeness before you clean. Every pre-modelling method assumes something about the gaps, so you need to know what the gaps are first.</li>
+      <li style="font-size:16px;line-height:1.75;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Write the data dictionary as you go. Reconstructing what a column meant six months later is worse than documenting it the day you made it.</li>
+      <li style="font-size:16px;line-height:1.75;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Reporting the underprediction made the paper more useful, not weaker. A stated failure mode is something a planner can work around.</li>
+    </ol>
+  </section>
+
+  <section data-screen-label="Case study CTA" style="padding:56px 0 0">
+    <hr class="hr" style="margin:0 0 40px">
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+      <div>
+        <h2 style="font-size:clamp(24px,3.2vw,30px);margin-bottom:6px">Got a dataset nobody trusts yet?</h2>
+        <p class="text-muted" style="margin:0;font-size:15px">Research, reconciliation, verification, and the writing that explains it.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <a class="btn btn-primary" href="Portfolio.dc.html#contact" style="padding:10px 18px;font-size:14px">Get in touch</a>
+        <a class="btn btn-secondary" href="Portfolio.dc.html#work" style="padding:10px 18px;font-size:14px">All work</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer style="border-top:1px solid var(--color-divider)">
+  <div style="max-width:880px;margin:0 auto;padding:26px 24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-600)">
+    <span>© 2026 Joshua Klyne P. Pudadera · case study 01</span>
+    <a href="Portfolio.dc.html" style="text-decoration:none">← back to portfolio</a>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+</body>
+</html>

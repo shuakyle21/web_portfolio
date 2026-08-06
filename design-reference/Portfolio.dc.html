@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Joshua Klyne Pudadera (Shua) — computer science graduate, published first-author researcher, AI-assisted technical writer, and records specialist. Verification before publication.">
+<meta name="keywords" content="developer portfolio, technical writer portfolio, AI research portfolio, claude code portfolio, fact-checking, verification">
+<title>Shua.dev — Research, Verification &amp; Technical Writing</title>
+<link rel="stylesheet" href="_ds/nocturne-1295f0f7-2ded-4fad-8535-3566f371ce8f/styles.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<script src="_ds/nocturne-1295f0f7-2ded-4fad-8535-3566f371ce8f/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+:root {
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+h1, h2, h3, h4, h5, h6, .card-title { font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.018em; }
+h1 { letter-spacing: -0.032em; font-weight: 600; }
+h2 { letter-spacing: -0.026em; }
+.card-kicker { letter-spacing: 0.04em; }
+body { margin: 0; scroll-behavior: smooth; }
+a { color: var(--color-accent); }
+a:hover { color: var(--color-accent-300); }
+@keyframes noct-blink { 0%,49% { opacity: 1 } 50%,100% { opacity: 0 } }
+@keyframes noct-sweep { from { background-size: 0% 38% } to { background-size: 100% 38% } }
+@keyframes noct-marquee-l { from { transform: translate3d(0,0,0) } to { transform: translate3d(-50%,0,0) } }
+@keyframes noct-marquee-r { from { transform: translate3d(-50%,0,0) } to { transform: translate3d(0,0,0) } }
+@keyframes noct-drift { from { transform: translate3d(-2%, -1%, 0) } to { transform: translate3d(2%, 1.5%, 0) } }
+/* Reduced motion: no looping or travelling motion, but keep short fades — they aid comprehension. */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 120ms !important } }
+</style>
+</helmet>
+
+<div style="background:var(--color-bg);color:var(--color-text);min-height:100vh;font-family:var(--font-body);position:relative;overflow-x:clip">
+
+<div aria-hidden="true" style="position:fixed;inset:-10%;z-index:0;pointer-events:none;background-image:radial-gradient(58vmax 42vmax at 14% 2%, color-mix(in srgb, var(--color-accent) 15%, transparent), transparent 68%), radial-gradient(46vmax 38vmax at 92% 26%, color-mix(in srgb, var(--color-accent) 9%, transparent), transparent 66%);animation:noct-drift 52s cubic-bezier(.45,0,.55,1) infinite alternate;will-change:transform"></div>
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--color-text) 7%, transparent) 1px, transparent 0);background-size:28px 28px;-webkit-mask-image:radial-gradient(120vmin 100vmin at 50% 0%, #000, transparent 78%);mask-image:radial-gradient(120vmin 100vmin at 50% 0%, #000, transparent 78%)"></div>
+
+
+<header style="position:sticky;top:0;z-index:50;background:color-mix(in srgb, #161826 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-divider)">
+  <nav class="nav" style="max-width:1120px;margin:0 auto;padding:12px 24px" aria-label="Primary">
+    <a class="nav-brand" href="#top" style="display:flex;align-items:center;gap:9px;text-decoration:none">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:7px;border:1px solid color-mix(in srgb, var(--color-accent) 55%, transparent);background:color-mix(in srgb, var(--color-accent) 12%, transparent)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 9 10 12 7 15"></polyline><line x1="13" y1="15" x2="17" y2="15"></line></svg>
+      </span>
+      <span>shua</span>
+    </a>
+    <div data-navwrap="" style="position:relative;display:{{ linksDisplay }};align-items:center;gap:22px">
+      <span data-navhl="" aria-hidden="true" style="position:absolute;bottom:-6px;left:0;width:1px;height:2px;border-radius:2px;background:var(--color-accent);opacity:0;transform-origin:left center;transform:translate3d(0,0,0) scaleX(0);transition:transform 240ms cubic-bezier(.32,.72,0,1), opacity 180ms ease"></span>
+      <a data-navlink="" href="#about">About</a>
+      <a data-navlink="" href="#skills">Capabilities</a>
+      <a data-navlink="" href="#stack">Stack</a>
+      <a data-navlink="" href="#work">Projects</a>
+      <a data-navlink="" href="#writing">Publications</a>
+      <a data-navlink="" href="#experience">Experience</a>
+      <a class="btn btn-primary" href="#contact" style="font-size:13px">Contact</a>
+    </div>
+    <button class="btn btn-secondary btn-icon" type="button" aria-label="Toggle navigation menu" aria-expanded="{{ menuExpanded }}" onClick="{{ toggleMenu }}" style="display:{{ burgerDisplay }}">
+      <span style="font-family:var(--font-mono);font-size:16px;line-height:1">{{ burgerGlyph }}</span>
+    </button>
+  </nav>
+  <div style="display:{{ drawerDisplay }};flex-direction:column;gap:2px;padding:8px 24px 18px;border-top:1px solid var(--color-divider)">
+    <a href="#about" onClick="{{ closeMenu }}" style="padding:11px 0;text-decoration:none;color:inherit;font-size:15px">About</a>
+    <a href="#skills" onClick="{{ closeMenu }}" style="padding:11px 0;text-decoration:none;color:inherit;font-size:15px">Capabilities</a>
+    <a href="#stack" onClick="{{ closeMenu }}" style="padding:11px 0;text-decoration:none;color:inherit;font-size:15px">Stack</a>
+    <a href="#work" onClick="{{ closeMenu }}" style="padding:11px 0;text-decoration:none;color:inherit;font-size:15px">Projects</a>
+    <a href="#writing" onClick="{{ closeMenu }}" style="padding:11px 0;text-decoration:none;color:inherit;font-size:15px">Publications</a>
+    <a href="#experience" onClick="{{ closeMenu }}" style="padding:11px 0;text-decoration:none;color:inherit;font-size:15px">Experience</a>
+    <a href="#contact" onClick="{{ closeMenu }}" style="padding:11px 0;text-decoration:none;color:var(--color-accent);font-size:15px">Contact</a>
+  </div>
+</header>
+
+<main id="top" style="position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 24px">
+
+  <section data-screen-label="Hero" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:center;padding:64px 0 112px">
+    <div>
+      <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-accent);margin:0 0 20px;letter-spacing:0.02em">$ whoami</p>
+      <h1 data-reveal="" style="font-size:clamp(38px,5.6vw,58px);margin:0 0 14px;letter-spacing:-0.03em">Hi, I’m <span style="font-family:'Caveat',cursive;font-weight:600;font-size:1.3em;line-height:0.9;letter-spacing:0">Shua.dev</span></h1>
+      <p style="font-family:var(--font-mono);font-size:clamp(15px,2.2vw,19px);margin:0 0 24px;color:var(--color-neutral-300);min-height:1.6em"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Data specialist, backend AI intern, published researcher, AI workflow analyst.</span><span aria-hidden="true">{{ typed }}</span><span aria-hidden="true" style="display:inline-block;width:9px;height:1.05em;margin-left:2px;background:var(--color-accent);vertical-align:-0.16em;animation:noct-blink 1s step-end infinite"></span></p>
+      
+      <div style="max-width:54ch;font-size:16px;line-height:1.7;color:color-mix(in srgb, var(--color-text) 80%, transparent);text-wrap:pretty">
+        <p style="margin: 0 0 14px; text-align: justify">I work at the point where data becomes a decision: dashboards and reports that people actually read, and the backend and automation underneath that keep them current without anyone re-typing a number.</p>
+        <p style="margin: 0; text-align: justify">Day to day I track a Scholarship program with status as Enrolled, Graduated, Assessed, Certified and Employed. Alongside that I'm interning as an AI backend engineer, and as a published first-author researcher I've run the full cycle of turning raw records into a conclusion that holds up when someone checks it.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 26px">
+        <a class="btn btn-primary" href="#work" style="padding:11px 20px;font-size:14px;transition:transform 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px)" style-active="transform:scale(0.97)">View Work</a>
+        <a class="btn btn-secondary" href="uploads/CV_research.pdf" target="_blank" rel="noreferrer" style="padding:11px 20px;font-size:14px;transition:transform 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px)" style-active="transform:scale(0.97)">Download Resume</a>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+        <a href="https://github.com/shuakyle21" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;border:1px solid color-mix(in srgb, var(--color-accent) 42%, transparent);background:color-mix(in srgb, var(--color-accent) 9%, transparent);color:var(--color-neutral-300);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), background 160ms cubic-bezier(.23,1,.32,1), border-color 160ms cubic-bezier(.23,1,.32,1), color 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);background:color-mix(in srgb, var(--color-accent) 18%, transparent);border-color:color-mix(in srgb, var(--color-accent) 70%, transparent);color:var(--color-accent-300)" style-active="transform:translateY(0) scale(0.97)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.91-.88-2.91-2.79 0-.55.2-1.02.51-1.39-.05-.13-.22-.65.05-1.35 0 0 .68-.21 2.23.82a4.6 4.6 0 0 1 2.03-.42c.69 0 1.38.09 2.03.42 1.55-1.05 2.23-.82 2.23-.82.27.7.1 1.22.05 1.35.32.37.51.84.51 1.39 0 1.92-1.14 2.59-2.92 2.79.29.26.55.75.55 1.51 0 1.09-.01 1.96-.01 2.23 0 .21.15.46.55.38A7.99 7.99 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg></a>
+        <a href="https://www.linkedin.com/in/joshua-klyne-pudadera-b76b73368/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;border:1px solid color-mix(in srgb, var(--color-accent) 42%, transparent);background:color-mix(in srgb, var(--color-accent) 9%, transparent);color:var(--color-neutral-300);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), background 160ms cubic-bezier(.23,1,.32,1), border-color 160ms cubic-bezier(.23,1,.32,1), color 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);background:color-mix(in srgb, var(--color-accent) 18%, transparent);border-color:color-mix(in srgb, var(--color-accent) 70%, transparent);color:var(--color-accent-300)" style-active="transform:translateY(0) scale(0.97)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146Zm4.943 12.248V6.169H2.542v7.225h2.401Zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016Zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.868 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4Z"></path></svg></a>
+        <a href="https://substack.com/@joshuaklynepudadera" target="_blank" rel="noreferrer" aria-label="Substack" title="Substack" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;border:1px solid color-mix(in srgb, var(--color-accent) 42%, transparent);background:color-mix(in srgb, var(--color-accent) 9%, transparent);color:var(--color-neutral-300);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), background 160ms cubic-bezier(.23,1,.32,1), border-color 160ms cubic-bezier(.23,1,.32,1), color 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);background:color-mix(in srgb, var(--color-accent) 18%, transparent);border-color:color-mix(in srgb, var(--color-accent) 70%, transparent);color:var(--color-accent-300)" style-active="transform:translateY(0) scale(0.97)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15 3.604H1V1.5h14v2.104ZM1 5.708h14V16l-7-3.926L1 16V5.708ZM15 9.24H1V7.135h14V9.24Z"></path></svg></a>
+        <a href="https://doi.org/10.51583/IJLTEMAS.2026.150600192" target="_blank" rel="noreferrer" aria-label="Published paper (DOI)" title="Published paper (DOI)" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;border:1px solid color-mix(in srgb, var(--color-accent) 42%, transparent);background:color-mix(in srgb, var(--color-accent) 9%, transparent);color:var(--color-neutral-300);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), background 160ms cubic-bezier(.23,1,.32,1), border-color 160ms cubic-bezier(.23,1,.32,1), color 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);background:color-mix(in srgb, var(--color-accent) 18%, transparent);border-color:color-mix(in srgb, var(--color-accent) 70%, transparent);color:var(--color-accent-300)" style-active="transform:translateY(0) scale(0.97)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM1.5 8a6.5 6.5 0 0 1 .43-2.32h2.3a15.6 15.6 0 0 0 0 4.64h-2.3A6.5 6.5 0 0 1 1.5 8Zm.99 3.82h2.02c.28.94.66 1.77 1.11 2.42a6.52 6.52 0 0 1-3.13-2.42ZM4.5 8c0-.82.06-1.6.17-2.32h6.66c.11.72.17 1.5.17 2.32s-.06 1.6-.17 2.32H4.67A15.4 15.4 0 0 1 4.5 8Zm1.11-6.24c-.45.65-.83 1.48-1.11 2.42H2.49a6.52 6.52 0 0 1 3.12-2.42ZM8 1.5c.85 0 1.79 1 2.35 2.68H5.65C6.21 2.5 7.15 1.5 8 1.5Zm0 13c-.85 0-1.79-1-2.35-2.68h4.7C9.79 13.5 8.85 14.5 8 14.5Zm2.39-.26c.45-.65.83-1.48 1.11-2.42h2.01a6.52 6.52 0 0 1-3.12 2.42Zm1.38-3.92a15.6 15.6 0 0 0 0-4.64h2.3a6.5 6.5 0 0 1 0 4.64h-2.3Zm-.27-6.24c-.28-.94-.66-1.77-1.11-2.42a6.52 6.52 0 0 1 3.12 2.42h-2.01Z"></path></svg></a>
+      </div>
+    </div>
+    <div style="display:{{ terminalDisplay }};flex-direction:column;align-self:start;justify-self:stretch;position:relative;width:100%;height:calc(100% - 70px);min-height:320px">
+      <div aria-hidden="true" style="position:absolute;top:-9px;left:-9px;width:14px;height:14px;border-top:1px solid var(--color-accent);border-left:1px solid var(--color-accent);opacity:0.62"></div>
+      <div aria-hidden="true" style="position:absolute;top:-9px;right:-9px;width:14px;height:14px;border-top:1px solid var(--color-accent);border-right:1px solid var(--color-accent);opacity:0.62"></div>
+      <div aria-hidden="true" style="position:absolute;bottom:-9px;left:-9px;width:14px;height:14px;border-bottom:1px solid var(--color-accent);border-left:1px solid var(--color-accent);opacity:0.62"></div>
+      <div aria-hidden="true" style="position:absolute;bottom:-9px;right:-9px;width:14px;height:14px;border-bottom:1px solid var(--color-accent);border-right:1px solid var(--color-accent);opacity:0.62"></div>
+      <div style="display:flex;flex:1;min-height:0;flex-direction:column;border-radius:var(--radius-lg);border:1px solid color-mix(in srgb, var(--color-accent) 26%, var(--color-divider));background:var(--color-surface);box-shadow:var(--shadow-md);overflow:hidden">
+        <div style="display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--color-divider)">
+          <span style="width:9px;height:9px;border-radius:50%;background:var(--color-neutral-700)"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:var(--color-neutral-700)"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:var(--color-accent-700)"></span>
+          <span style="margin-left:8px;font-family:var(--font-mono);font-size:11px;color:var(--color-neutral-500)">{{ flipFile }}</span>
+        </div>
+        <div style="position:relative;flex:1;min-height:280px;perspective:1400px">
+          <div style="position:absolute;inset:0;transform-style:preserve-3d;transition:transform 560ms cubic-bezier(.77,0,.175,1);transform:{{ flipTransform }}">
+            <div aria-hidden="{{ frontHidden }}" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;line-height:0;padding:0 3px">
+              <img src="assets/portrait.jpg" width="540" height="694" alt="Joshua Klyne Pudadera" loading="eager" fetchpriority="high" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 16%;border-radius:calc(var(--radius-lg) - 3px);filter:saturate(0.94) contrast(1.02) brightness(0.97)">
+              <div aria-hidden="true" style="position:absolute;inset:0 3px;border-radius:calc(var(--radius-lg) - 3px);background:linear-gradient(to bottom, color-mix(in srgb, var(--color-bg) 22%, transparent) 0%, transparent 26%, transparent 68%, color-mix(in srgb, var(--color-bg) 46%, transparent) 100%)"></div>
+              <div aria-hidden="true" style="position:absolute;left:3px;right:3px;bottom:0;height:1px;background:linear-gradient(to right, transparent, color-mix(in srgb, var(--color-accent) 55%, transparent) 22%, color-mix(in srgb, var(--color-accent) 55%, transparent) 78%, transparent)"></div>
+            </div>
+            <div aria-hidden="{{ backHidden }}" style="position:absolute;inset:0 3px;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);overflow:auto;border-radius:calc(var(--radius-lg) - 3px);background:color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));padding:18px 20px;font-family:var(--font-mono);font-size:12px;line-height:1.9;color:var(--color-neutral-500)">
+              <div style="margin-bottom:8px;color:var(--color-neutral-600)">// cat education.json</div>
+              <div>{</div>
+              <div style="padding-left:16px"><span style="color:var(--color-accent-300)">"degree"</span>: <span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"BS Computer Science"</span>,</div>
+              <div style="padding-left:16px"><span style="color:var(--color-accent-300)">"college"</span>: <span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"Engineering, Architecture and Computing"</span>,</div>
+              <div style="padding-left:16px"><span style="color:var(--color-accent-300)">"university"</span>: <span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"Notre Dame of Marbel University"</span>,</div>
+              <div style="padding-left:16px"><span style="color:var(--color-accent-300)">"years"</span>: <span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"2021 — 2025"</span>,</div>
+              <div style="padding-left:16px"><span style="color:var(--color-accent-300)">"gpa"</span>: <span style="color:var(--color-accent)">1.67</span>,</div>
+              <div style="padding-left:16px"><span style="color:var(--color-accent-300)">"leadership"</span>: {</div>
+              <div style="padding-left:32px"><span style="color:var(--color-accent-300)">"role"</span>: <span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"President, PSITS — NDMU Chapter"</span>,</div>
+              <div style="padding-left:32px"><span style="color:var(--color-accent-300)">"term"</span>: <span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"Jul 2023 — May 2024"</span>,</div>
+              <div style="padding-left:32px"><span style="color:var(--color-accent-300)">"note"</span>: <span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"regional competitions — overall champion"</span></div>
+              <div style="padding-left:16px">},</div>
+              <div style="padding-left:16px"><span style="color:var(--color-accent-300)">"honors"</span>: [</div>
+              <div style="padding-left:32px"><span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"Best Student Research — CS, Data Science and Algorithms"</span>,</div>
+              <div style="padding-left:32px"><span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"NDMU 18th Araw ng Parangal"</span></div>
+              <div style="padding-left:16px">],</div>
+              <div style="padding-left:16px"><span style="color:var(--color-accent-300)">"thesis"</span>: <span style="color:color-mix(in srgb, var(--color-text) 86%, transparent)">"Published — IJLTEMAS"</span></div>
+              <div>}</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:12px 14px 13px;font-family:var(--font-mono);font-size:11px;color:var(--color-neutral-500)">
+          <span>Joshua Klyne Pudadera</span>
+          <button type="button" onClick="{{ toggleFlip }}" style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent-300);background:none;border:0;padding:2px 4px;cursor:pointer;border-radius:var(--radius-sm);transition:color 160ms ease, transform 140ms cubic-bezier(.23,1,.32,1)" style-hover="color:var(--color-accent)" style-active="transform:scale(0.96)">{{ flipLabel }}</button>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" data-screen-label="About" style="padding:112px 0 0;scroll-margin-top:56px">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:22px">$ cat about.md</h6>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px">
+      <div>
+        <h2 data-reveal="" style="font-size:clamp(28px,3.6vw,34px);margin-bottom:18px">I check things before they ship</h2>
+        <p style="font-size: 16px; line-height: 1.75; color: color-mix(in srgb, var(--color-text) 80%, transparent); max-width: 58ch; text-wrap: pretty; text-align: justify">Computer Science, Notre Dame of Marbel University, 2025. Through 2026 I ran an AI-assisted research and writing pipeline that produced long-form technical articles on AI and software engineering, with a verification gate between draft and publication.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: color-mix(in srgb, var(--color-text) 80%, transparent); max-width: 58ch; text-wrap: pretty; text-align: justify">Alongside that, nearly five years maintaining records for a TESDA-registered training institution to government documentation standards and audit checklists. That work is where the habit comes from: <span style="background-image:linear-gradient(color-mix(in srgb, var(--color-accent) 30%, transparent), color-mix(in srgb, var(--color-accent) 30%, transparent));background-repeat:no-repeat;background-position:0 82%;background-size:100% 38%;padding:0 2px">a record is either audit-ready or it is not</span>, and no amount of confidence closes that gap.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: color-mix(in srgb, var(--color-text) 80%, transparent); max-width: 58ch; text-wrap: pretty; text-align: justify">I'm currently a Backend AI Engineer intern at FlyRank AI, working from written specifications and shipping written documentation with every deliverable.</p>
+        <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-neutral-500);margin-top:26px"># Banga, South Cotabato, Philippines · open to remote</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px">
+          <div class="card elev-sm" style="gap:4px">
+            <span data-count="4" data-suffix="+" style="font-family:var(--font-heading);font-size:30px;letter-spacing:-0.02em">4+</span>
+            <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-500)">Years of audit-ready records</span>
+          </div>
+          <div class="card elev-sm" style="gap:4px">
+            <span data-count="2918" data-group="1" style="font-family:var(--font-heading);font-size:30px;letter-spacing:-0.02em">2,918</span>
+            <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-500)">Rows reconciled, dengue dataset</span>
+          </div>
+          <div class="card elev-sm" style="gap:4px">
+            <span data-count="3" style="font-family:var(--font-heading);font-size:30px;letter-spacing:-0.02em">3</span>
+            <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-500)">Vocational programmes covered</span>
+          </div>
+          <div class="card elev-sm" style="gap:4px">
+            <span data-count="1" style="font-family:var(--font-heading);font-size:30px;letter-spacing:-0.02em">1</span>
+            <span style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-500)">Peer-reviewed paper, first author</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-500);margin-bottom:10px">/tools-used</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px">
+            <span class="tag tag-accent">Claude code</span>
+            <span class="tag tag-neutral">ChatGPT</span>
+            
+            <span class="tag tag-neutral">Prompt engineering</span>
+            <span class="tag tag-neutral">Firecrawl</span>
+            
+            
+            
+            <span class="tag tag-neutral">Microsoft Word</span>
+          </div>
+        </div>
+        <div class="card elev-sm" style="padding: 18px; gap: 8px; border-left: 2px solid var(--color-accent); border-style: double; border-width: 3px; border-color: var(--color-accent); text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15)">
+          <span class="card-kicker" style="font-family:var(--font-mono)">Certifications</span>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13px;color:color-mix(in srgb, var(--color-text) 78%, transparent)">
+            <li>Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</li>
+            <li>Introduction to Machine Learning on AWS</li>
+            <li>AWS Educate Introduction to Generative AI</li>
+            <li>Leveraging AI for Text Analysis: NLP Using Orange Data Mining</li>
+          </ul>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:4px;font-family:var(--font-mono);font-size:12px">
+            <a href="https://www.linkedin.com/in/joshua-klyne-pudadera-b76b73368/details/certifications/" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:7px;text-decoration:none;transition:color 160ms cubic-bezier(.23,1,.32,1), transform 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-1px)" style-active="transform:translateY(0) scale(0.97)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"></path></svg>
+              <span>Verify on LinkedIn</span>
+            </a>
+            <a href="https://www.credly.com/users/joshua-klyne-pudadera" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:7px;text-decoration:none;transition:color 160ms cubic-bezier(.23,1,.32,1), transform 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-1px)" style-active="transform:translateY(0) scale(0.97)">
+              <img src="https://info.credly.com/hubfs/Credly_orange-favicon-2.png" alt="" width="15" height="15" style="width:15px;height:15px;border-radius:3px">
+              <span>Credly badges</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" data-screen-label="Capabilities" style="padding:112px 0 0;scroll-margin-top:56px">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:22px">$ ls ./capabilities</h6>
+    <h2 data-reveal="" style="font-size:clamp(28px,3.6vw,34px);margin-bottom:8px">Capabilities</h2>
+    <p class="text-muted" style="max-width:56ch;margin-bottom:34px">Dashboards and analysis first, then the engineering that supports the data work and keeps it running. Written from what I have shipped, not what I have read about.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+
+      <div class="card elev-sm" style="padding:20px;gap:14px;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)">
+        <span class="card-kicker" style="font-family:var(--font-mono)">01 / Dashboards &amp; reporting</span>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span class="tag tag-neutral">Excel<br></span>
+          <span class="tag tag-neutral">Lookups &amp; pivot summaries</span>
+          <span class="tag tag-neutral">Google Sheets / Looker Studio</span>
+          <span class="tag tag-neutral">Status &amp; funnel reporting</span>
+          <span class="tag tag-neutral">Recurring report cycles</span>
+          <span class="tag tag-neutral">Charts people can read</span>
+        </div>
+      </div>
+
+      <div class="card elev-sm" style="padding:20px;gap:14px;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)">
+        <span class="card-kicker" style="font-family:var(--font-mono)">02 / Analysis &amp; modelling</span>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span class="tag tag-neutral">pandas / NumPy</span>
+          <span class="tag tag-neutral">SQL</span>
+          <span class="tag tag-neutral">Cleaning &amp; deduplication</span>
+          <span class="tag tag-neutral">matplotlib / seaborn</span>
+          <span class="tag tag-neutral">scikit-learn</span>
+          <span class="tag tag-neutral">Orange Data Mining</span>
+          <span class="tag tag-neutral">Jupyter</span>
+          <span class="tag tag-neutral">Forecasting models</span>
+          <span class="tag tag-neutral">Geospatial data</span>
+        </div>
+      </div>
+
+      <div class="card elev-sm" style="padding:20px;gap:14px;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)">
+        <span class="card-kicker" style="font-family:var(--font-mono)">03 / Backend &amp; APIs</span>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span class="tag tag-neutral">Python</span>
+          <span class="tag tag-neutral">REST endpoint design</span>
+          <span class="tag tag-neutral">Request validation</span>
+          <span class="tag tag-neutral">Error handling</span>
+          <span class="tag tag-neutral">Relational schema design</span>
+          <span class="tag tag-neutral">Cloud integration</span>
+          <span class="tag tag-neutral">Working from written specs</span>
+        </div>
+      </div>
+
+      <div class="card elev-sm" style="padding:20px;gap:14px;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)">
+        <span class="card-kicker" style="font-family:var(--font-mono)">04 / LLM integration</span>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span class="tag tag-neutral">LLM API calls</span>
+          <span class="tag tag-neutral">Prompt engineering</span>
+          <span class="tag tag-neutral">Structured output</span>
+          <span class="tag tag-neutral">Custom Claude skills</span>
+          <span class="tag tag-neutral">Grounding in real sources</span>
+          <span class="tag tag-neutral">Output review against spec</span>
+        </div>
+      </div>
+
+      <div class="card elev-sm" style="padding:20px;gap:14px;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)">
+        <span class="card-kicker" style="font-family:var(--font-mono)">05 / Automation &amp; pipelines</span>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span class="tag tag-neutral">Scripted ETL</span>
+          <span class="tag tag-neutral">Firecrawl scraping</span>
+          <span class="tag tag-neutral">Repeatable runs</span>
+          <span class="tag tag-neutral">Multi-source reconciliation</span>
+          <span class="tag tag-neutral">Failure &amp; retry handling</span>
+          <span class="tag tag-neutral">Google Workspace automation</span>
+        </div>
+      </div>
+
+
+
+      <div class="card elev-sm" style="padding:20px;gap:14px;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)">
+        <span class="card-kicker" style="font-family:var(--font-mono)">06 / Engineering practice</span>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span class="tag tag-neutral">Git &amp; GitHub</span>
+          <span class="tag tag-neutral">GitHub Actions CI/CD</span>
+          <span class="tag tag-neutral">Code review of AI output</span>
+          <span class="tag tag-neutral">Technical documentation</span>
+          <span class="tag tag-neutral">Version-controlled revisions</span>
+          <span class="tag tag-neutral">Verification before merge</span>
+          <span class="tag tag-neutral">Architecture &amp; system design</span>
+          <span class="tag tag-neutral">Full-stack delivery</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="stack" data-screen-label="Tech stack" style="padding:112px 0 0;scroll-margin-top:56px">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:22px">$ cat stack.json</h6>
+    <h2 data-reveal="" style="font-size:clamp(28px,3.6vw,34px);margin-bottom:8px">Tech stack</h2>
+    <p class="text-muted" style="max-width:54ch;margin-bottom:34px">The tools the work actually runs on. Analysis on top, dashboards and documentation in the middle, what ships at the bottom.</p>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+
+      <div data-marquee="" onMouseEnter="{{ pauseRow }}" onMouseLeave="{{ resumeRow }}" style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);mask-image:linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%)">
+        <div data-track="" style="display:flex;gap:14px;padding-right:14px;width:max-content;animation:noct-marquee-l 48s linear infinite">
+          <sc-for list="{{ rowA }}" as="t" hint-placeholder-count="9">
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:var(--radius-md);border:1px solid var(--color-divider);background:var(--color-surface);white-space:nowrap;transition:border-color 200ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1)" style-hover="border-color:color-mix(in srgb, var(--color-accent) 55%, transparent);transform:translateY(-2px)">
+              <img src="{{ t.src }}" alt="" width="22" height="22" loading="lazy" decoding="async" onError="{{ logoFallback }}" style="width:22px;height:22px;display:block;opacity:0.9">
+              <span style="font-size:13px;color:var(--color-neutral-400)">{{ t.name }}</span>
+            </div>
+          </sc-for>
+          <sc-for list="{{ rowA }}" as="t" hint-placeholder-count="9">
+            <div aria-hidden="true" style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:var(--radius-md);border:1px solid var(--color-divider);background:var(--color-surface);white-space:nowrap;transition:border-color 200ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1)" style-hover="border-color:color-mix(in srgb, var(--color-accent) 55%, transparent);transform:translateY(-2px)">
+              <img src="{{ t.src }}" alt="" width="22" height="22" loading="lazy" decoding="async" onError="{{ logoFallback }}" style="width:22px;height:22px;display:block;opacity:0.9">
+              <span style="font-size:13px;color:var(--color-neutral-400)">{{ t.name }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div data-marquee="" onMouseEnter="{{ pauseRow }}" onMouseLeave="{{ resumeRow }}" style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);mask-image:linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%)">
+        <div data-track="" style="display:flex;gap:14px;padding-right:14px;width:max-content;animation:noct-marquee-r 56s linear infinite">
+          <sc-for list="{{ rowB }}" as="t" hint-placeholder-count="8">
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:var(--radius-md);border:1px solid var(--color-divider);background:var(--color-surface);white-space:nowrap;transition:border-color 200ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1)" style-hover="border-color:color-mix(in srgb, var(--color-accent) 55%, transparent);transform:translateY(-2px)">
+              <img src="{{ t.src }}" alt="" width="22" height="22" loading="lazy" decoding="async" onError="{{ logoFallback }}" style="width:22px;height:22px;display:block;opacity:0.9">
+              <span style="font-size:13px;color:var(--color-neutral-400)">{{ t.name }}</span>
+            </div>
+          </sc-for>
+          <sc-for list="{{ rowB }}" as="t" hint-placeholder-count="8">
+            <div aria-hidden="true" style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:var(--radius-md);border:1px solid var(--color-divider);background:var(--color-surface);white-space:nowrap;transition:border-color 200ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1)" style-hover="border-color:color-mix(in srgb, var(--color-accent) 55%, transparent);transform:translateY(-2px)">
+              <img src="{{ t.src }}" alt="" width="22" height="22" loading="lazy" decoding="async" onError="{{ logoFallback }}" style="width:22px;height:22px;display:block;opacity:0.9">
+              <span style="font-size:13px;color:var(--color-neutral-400)">{{ t.name }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div data-marquee="" onMouseEnter="{{ pauseRow }}" onMouseLeave="{{ resumeRow }}" style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);mask-image:linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%)">
+        <div data-track="" style="display:flex;gap:14px;padding-right:14px;width:max-content;animation:noct-marquee-l 44s linear infinite">
+          <sc-for list="{{ rowC }}" as="t" hint-placeholder-count="13">
+            <div style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:var(--radius-md);border:1px solid var(--color-divider);background:var(--color-surface);white-space:nowrap;transition:border-color 200ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1)" style-hover="border-color:color-mix(in srgb, var(--color-accent) 55%, transparent);transform:translateY(-2px)">
+              <img src="{{ t.src }}" alt="" width="22" height="22" loading="lazy" decoding="async" onError="{{ logoFallback }}" style="width:22px;height:22px;display:block;opacity:0.9">
+              <span style="font-size:13px;color:var(--color-neutral-400)">{{ t.name }}</span>
+            </div>
+          </sc-for>
+          <sc-for list="{{ rowC }}" as="t" hint-placeholder-count="13">
+            <div aria-hidden="true" style="display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:var(--radius-md);border:1px solid var(--color-divider);background:var(--color-surface);white-space:nowrap;transition:border-color 200ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1)" style-hover="border-color:color-mix(in srgb, var(--color-accent) 55%, transparent);transform:translateY(-2px)">
+              <img src="{{ t.src }}" alt="" width="22" height="22" loading="lazy" decoding="async" onError="{{ logoFallback }}" style="width:22px;height:22px;display:block;opacity:0.9">
+              <span style="font-size:13px;color:var(--color-neutral-400)">{{ t.name }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="work" data-screen-label="Projects" style="padding:112px 0 0;scroll-margin-top:56px">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:22px">$ ls ./projects</h6>
+    <h2 data-reveal="" style="font-size:clamp(28px,3.6vw,34px);margin-bottom:8px">Projects</h2>
+    <p class="text-muted" style="max-width:54ch;margin-bottom:34px">Eight projects, with what each one actually produced.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+
+      <article class="card elev-sm" style="padding:0;overflow:hidden;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+        <div style="width:100%;background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <image-slot style="width:100%;aspect-ratio:16/9" id="work-egace" shape="rect" placeholder="EGACE dashboard screenshot (names redacted)"></image-slot>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h3 class="card-title" style="font-size:19px">EGACE status dashboard</h3>
+            <span class="tag tag-accent" style="flex:none">Dashboard</span>
+          </div>
+          <p class="card-body" style="font-size:14px">A recurring Excel dashboard tracking every scholarship trainee through the five EGACE stages — Enrolled, Graduated, Assessed, Certified, Employed — built on lookups against the trainee records so the counts update from one source rather than being tallied by hand.</p>
+          
+          
+          <p style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--color-accent-300);line-height:1.6">→ One place to see where a batch stands, instead of five separate counts.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">Excel</span>
+            <span class="tag tag-neutral">Lookups</span>
+            <span class="tag tag-neutral">Charting</span>
+            <span class="tag tag-neutral">Status reporting</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card elev-sm" style="padding:0;overflow:hidden;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+        <div style="width:100%;aspect-ratio:16/9;display:flex;flex-direction:column;background:color-mix(in srgb, var(--color-text) 4%, transparent);border-bottom:1px solid var(--color-divider);overflow:hidden">
+          <div style="display:flex;align-items:center;gap:7px;padding:9px 14px;border-bottom:1px solid var(--color-divider);flex:none">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--color-accent-700)"></span>
+            <span style="font-family:var(--font-mono);font-size:10.5px;color:var(--color-neutral-500)">update-github-info.yml</span>
+          </div>
+          <div style="padding:12px 14px;font-family:var(--font-mono);font-size:10.5px;line-height:1.8;color:var(--color-neutral-300);display:flex;flex-direction:column">
+            <div><span style="color:var(--color-neutral-500)">on:</span></div>
+            <div>&nbsp;&nbsp;workflow_dispatch:</div>
+            <div>&nbsp;&nbsp;<span style="color:var(--color-neutral-500)">schedule:</span> [cron: daily]</div>
+            <div><span style="color:var(--color-neutral-500)">permissions:</span></div>
+            <div>&nbsp;&nbsp;contents: <span style="color:var(--color-accent-300)">read</span></div>
+            <div><span style="color:var(--color-neutral-500)">safe-outputs:</span></div>
+            <div>&nbsp;&nbsp;create-pull-request:</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;draft: <span style="color:var(--color-accent-300)">true</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h3 class="card-title" style="font-size:19px">Agentic CI/CD workflow</h3>
+            <span class="tag tag-accent" style="flex:none">DevOps</span>
+          </div>
+          <p class="card-body" style="font-size:14px">A GitHub Skills challenge completed end to end: an agentic GitHub Actions workflow authored in markdown and compiled to a <span style="font-family:var(--font-mono);font-size:0.9em;color:var(--color-accent-300)">.lock.yml</span> pipeline. Runs on a daily schedule or on demand with read-only permissions, fetches sources over an explicit network allowlist, keeps its credentials in repository secrets, and returns its change as a draft pull request instead of pushing to main.</p>
+          <p style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--color-accent-300);line-height:1.6">→ Triggers, least privilege, secrets and a human review gate.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">GitHub Actions</span>
+            <span class="tag tag-neutral">CI/CD</span>
+            <span class="tag tag-neutral">YAML</span>
+            <span class="tag tag-neutral">Secrets management</span>
+          </div>
+          <a class="btn btn-secondary" href="https://github.com/shuakyle21/skills-agentic-workflows-that-read-the-room" target="_blank" rel="noreferrer" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-top:2px;padding:10px 16px;font-size:13px;transition:transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-sm)" style-active="transform:scale(0.97)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.91-.88-2.91-2.79 0-.55.2-1.02.51-1.39-.05-.13-.22-.65.05-1.35 0 0 .68-.21 2.23.82a4.6 4.6 0 0 1 2.03-.42c.69 0 1.38.09 2.03.42 1.55-1.05 2.23-.82 2.23-.82.27.7.1 1.22.05 1.35.32.37.51.84.51 1.39 0 1.92-1.14 2.59-2.92 2.79.29.26.55.75.55 1.51 0 1.09-.01 1.96-.01 2.23 0 .21.15.46.55.38A7.99 7.99 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>
+            <span>View repository</span>
+            <span style="font-family:var(--font-mono);font-size:12px;opacity:0.62">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="card elev-sm" style="padding:0;overflow:hidden;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+        <div style="width:100%;aspect-ratio:16/9;display:flex;flex-direction:column;background:color-mix(in srgb, var(--color-text) 4%, transparent);border-bottom:1px solid var(--color-divider);overflow:hidden">
+          <div style="display:flex;align-items:center;gap:7px;padding:9px 14px;border-bottom:1px solid var(--color-divider);flex:none">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--color-accent-700)"></span>
+            <span style="font-family:var(--font-mono);font-size:10.5px;color:var(--color-neutral-500)">create-feature-branch</span>
+          </div>
+          <div style="padding:12px 14px;font-family:var(--font-mono);font-size:10.5px;line-height:1.9;color:var(--color-neutral-300);display:flex;flex-direction:column">
+            <div><span style="color:var(--color-accent)">$</span> /create-feature-branch ENG-59</div>
+            <div><span style="color:var(--color-neutral-500)">[OK]</span> issue title resolved</div>
+            <div><span style="color:var(--color-neutral-500)">[OK]</span> tree clean, base up to date</div>
+            <div><span style="color:var(--color-accent-300)">→</span> eng-59-add-webhook-retries</div>
+            <div><span style="color:var(--color-neutral-500)">[OK]</span> pushed with tracking</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h3 class="card-title" style="font-size:19px">linear-git-skills</h3>
+            <span class="tag tag-accent" style="flex:none">Workflow</span>
+          </div>
+          <p class="card-body" style="font-size:14px">Two custom Claude Code skills that automate the branch-to-PR loop for teams using Linear with the GitHub integration. Linear links a branch to an issue only by matching the branch name it would have generated itself, so <span style="font-family:var(--font-mono);font-size:0.9em;color:var(--color-accent-300)">create-feature-branch</span> reproduces that format exactly rather than re-implementing the slug, and <span style="font-family:var(--font-mono);font-size:0.9em;color:var(--color-accent-300)">create-pr</span> runs the project's checks, summarizes the real diff, and updates an open PR instead of failing on one.</p>
+          <p style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--color-accent-300);line-height:1.6">→ Read-only against Linear, so a two-way sync can't produce duplicate issues.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">Claude Code skills</span>
+            <span class="tag tag-neutral">Linear MCP</span>
+            <span class="tag tag-neutral">GitHub CLI</span>
+            <span class="tag tag-neutral">Git workflow</span>
+          </div>
+          <a class="btn btn-secondary" href="https://github.com/shuakyle21/linear-git-skills" target="_blank" rel="noreferrer" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-top:2px;padding:10px 16px;font-size:13px;transition:transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-sm)" style-active="transform:scale(0.97)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.91-.88-2.91-2.79 0-.55.2-1.02.51-1.39-.05-.13-.22-.65.05-1.35 0 0 .68-.21 2.23.82a4.6 4.6 0 0 1 2.03-.42c.69 0 1.38.09 2.03.42 1.55-1.05 2.23-.82 2.23-.82.27.7.1 1.22.05 1.35.32.37.51.84.51 1.39 0 1.92-1.14 2.59-2.92 2.79.29.26.55.75.55 1.51 0 1.09-.01 1.96-.01 2.23 0 .21.15.46.55.38A7.99 7.99 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>
+            <span>View repository</span>
+            <span style="font-family:var(--font-mono);font-size:12px;opacity:0.62">↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="card elev-sm" style="padding:0;overflow:hidden;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+        <div style="width:100%;background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <image-slot style="width:100%;aspect-ratio:16/9" id="work-dengue" shape="rect" placeholder="Dengue forecasting figure or map"></image-slot>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h3 class="card-title" style="font-size:19px">Dengue Outbreak Forecasting Dataset &amp; Model</h3>
+            <span class="tag tag-accent" style="flex:none">Published</span>
+          </div>
+          <p class="card-body" style="font-size:14px">A monthly 2015–2024 dataset for SOCCSKSARGEN, reconciled from DOH-CHD case records, Google Earth Engine rasters and NAMRIA shapefiles, and the forecasting model built on it.</p>
+          <p style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--color-accent-300);line-height:1.6">→ 2,918 rows × 19 columns from three incompatible source types. First author of four.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">Dataset assembly</span>
+            <span class="tag tag-neutral">Earth Engine</span>
+            <span class="tag tag-neutral">Shapefiles</span>
+            <span class="tag tag-neutral">Forecasting</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px">
+            <a class="btn btn-primary" href="Case Study.dc.html" style="font-size:13px">Read case study</a>
+            <a class="btn btn-secondary" href="https://doi.org/10.51583/IJLTEMAS.2026.150600192" target="_blank" rel="noreferrer" style="font-size:13px">DOI</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card elev-sm" style="padding:0;overflow:hidden;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+        <div style="width:100%;background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <image-slot style="width:100%;aspect-ratio:16/9" id="work-pipeline" shape="rect" placeholder="Screenshot of the research pipeline in Claude"></image-slot>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h3 class="card-title" style="font-size:19px">AI research &amp; verification pipeline</h3>
+            <span class="tag tag-outline" style="flex:none">Process</span>
+          </div>
+          <p class="card-body" style="font-size:14px">A repeatable pipeline built in Claude: topic and niche validation, source gathering, automated scraping with Firecrawl, claim verification against official documentation and peer-reviewed sources, then an editorial pass for voice and consistency.</p>
+          <p style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--color-accent-300);line-height:1.6">→ Ran on every article, so the process stayed auditable and each claim traceable.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">Claude</span>
+            <span class="tag tag-neutral">Firecrawl</span>
+            <span class="tag tag-neutral">Prompt engineering</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card elev-sm" style="padding:0;overflow:hidden;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+        <div style="width:100%;background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <image-slot style="width:100%;aspect-ratio:16/9" id="work-skill" shape="rect" placeholder="Skill output landing in Google Docs"></image-slot>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h3 class="card-title" style="font-size:19px">medium-draft, a custom Claude skill</h3>
+            <span class="tag tag-outline" style="flex:none">Tooling</span>
+          </div>
+          <p class="card-body" style="font-size:14px">A Claude skill that outputs publication-ready drafts directly into Google Docs, so research and publishing meet without a manual reformatting step in between.</p>
+          <p style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--color-accent-300);line-height:1.6">→ Removed the reformatting step entirely.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">Claude skills</span>
+            <span class="tag tag-neutral">Google Docs</span>
+            <span class="tag tag-neutral">Workflow design</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card elev-sm" style="padding:0;overflow:hidden;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+        <div style="width:100%;background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <img src="assets/leadsolutions.jpg" width="960" height="540" alt="The transaction tracking app running on an Android device in front of the Flutter project in Android Studio" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;filter:saturate(0.92) contrast(1.03) brightness(0.94)">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h3 class="card-title" style="font-size:19px">Transaction tracking mobile app</h3>
+            <span class="tag tag-outline" style="flex:none">Internship</span>
+          </div>
+          <p class="card-body" style="font-size:14px">Built at LEADSolutions INC as an on-the-job trainee: a Flutter mobile application for transaction tracking, integrated with the company's existing web system on Azure Cloud so data moved between the two without manual re-entry.</p>
+          <p style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--color-accent-300);line-height:1.6">→ Designed the UI/UX as well as the build, from navigation through to cloud integration.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">Flutter / Dart</span>
+            <span class="tag tag-neutral">Android Studio</span>
+            <span class="tag tag-neutral">Azure Cloud</span>
+            <span class="tag tag-neutral">UI/UX design</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card elev-sm" style="padding:0;overflow:hidden;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+        <div style="width:100%;background:color-mix(in srgb, var(--color-text) 4%, transparent)">
+          <image-slot style="width:100%;aspect-ratio:16/9" id="work-records" shape="rect" placeholder="Records or compliance documentation (redacted)"></image-slot>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <h3 class="card-title" style="font-size:19px">TESDA scholarship records, end to end</h3>
+            <span class="tag tag-neutral" style="flex:none">Ongoing</span>
+          </div>
+          <p class="card-body" style="font-size:14px">Trainee, programme and scholarship records encoded into T2MIS, TESDA’s national training management information system, plus the compliance documentation behind them and the billing reconciled against government purchase orders.</p>
+          <p style="margin:0;font-family:var(--font-mono);font-size:12px;color:var(--color-accent-300);line-height:1.6">→ Three vocational programmes kept audit-ready for four years running.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">T2MIS</span>
+            <span class="tag tag-neutral">Compliance</span>
+            <span class="tag tag-neutral">Billing reconciliation</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="writing" data-screen-label="Writing" style="display:{{ writingDisplay }};flex-direction:column;padding:112px 0 0;scroll-margin-top:56px">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:22px">$ cat pipeline.md</h6>
+    <h2 data-reveal="" style="font-size:clamp(28px,3.6vw,34px);margin-bottom:8px">Writing, and the gate before it</h2>
+    <p class="text-muted" style="max-width:56ch;margin-bottom:34px">Long-form technical articles on AI and software engineering, 1,200 to 2,500 words, for professional audiences on Medium and LinkedIn. Every one of them went through these five steps.</p>
+    <ol style="list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+      <li class="card elev-sm" style="padding:18px;gap:8px">
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent)">01</span>
+        <h4 style="font-size:15px;margin:0">Topic and niche validation</h4>
+        <p style="margin:0;font-size:13px;color:color-mix(in srgb, var(--color-text) 72%, transparent)">Is there an audience, and is there anything new to say to them.</p>
+      </li>
+      <li class="card elev-sm" style="padding:18px;gap:8px">
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent)">02</span>
+        <h4 style="font-size:15px;margin:0">Source gathering</h4>
+        <p style="margin:0;font-size:13px;color:color-mix(in srgb, var(--color-text) 72%, transparent)">Government, academic and technical documentation first, commentary second.</p>
+      </li>
+      <li class="card elev-sm" style="padding:18px;gap:8px">
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent)">03</span>
+        <h4 style="font-size:15px;margin:0">Automated scraping</h4>
+        <p style="margin:0;font-size:13px;color:color-mix(in srgb, var(--color-text) 72%, transparent)">Firecrawl pulls the sources so the reading list is complete before drafting.</p>
+      </li>
+      <li class="card elev-sm" style="padding: 18px; gap: 8px; box-shadow: var(--shadow-md); border-left: 2px solid var(--color-accent); border-style: none">
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent)">04</span>
+        <h4 style="font-size:15px;margin:0">Claim verification</h4>
+        <p style="margin:0;font-size:13px;color:color-mix(in srgb, var(--color-text) 72%, transparent)">Every technical claim checked against primary sources. Nothing publishes on trust.</p>
+      </li>
+      <li class="card elev-sm" style="padding:18px;gap:8px">
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent)">05</span>
+        <h4 style="font-size:15px;margin:0">Editorial pass</h4>
+        <p style="margin:0;font-size:13px;color:color-mix(in srgb, var(--color-text) 72%, transparent)">Voice and consistency, plus diagrams so verified facts read at a glance.</p>
+      </li>
+    </ol>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+      <a class="card elev-sm" href="https://doi.org/10.51583/IJLTEMAS.2026.150600192" target="_blank" rel="noreferrer" style="padding:20px;gap:10px;text-decoration:none;color:inherit;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)" style-active="transform:translateY(-1px) scale(0.99)">
+        <span class="card-meta" style="font-family:var(--font-mono)">IJLTEMAS · Vol. XV Issue VI</span>
+        <h3 class="card-title">Peer-reviewed publication</h3>
+        <p class="card-body" style="font-size:14px">Dengue outbreak forecasting for SOCCSKSARGEN. First author of four.</p>
+        <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-accent)">10.51583/IJLTEMAS.2026.150600192 →</span>
+      </a>
+      <a class="card elev-sm" href="https://www.linkedin.com/in/joshua-klyne-pudadera-b76b73368/" target="_blank" rel="noreferrer" style="padding:20px;gap:10px;text-decoration:none;color:inherit;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)" style-active="transform:translateY(-1px) scale(0.99)">
+        <span class="card-meta" style="font-family:var(--font-mono)">LinkedIn</span>
+        <h3 class="card-title">Shorter pieces</h3>
+        <p class="card-body" style="font-size:14px">Notes on verification, AI tooling and what the model got wrong this week.</p>
+        <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-accent)">Follow along →</span>
+      </a>
+      <a class="card elev-sm" href="https://substack.com/@joshuaklynepudadera" target="_blank" rel="noreferrer" style="padding:20px;gap:10px;text-decoration:none;color:inherit;transition:transform 220ms cubic-bezier(.23,1,.32,1), box-shadow 220ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-4px);box-shadow:var(--shadow-md)" style-active="transform:translateY(-1px) scale(0.99)">
+        <span class="card-meta" style="font-family:var(--font-mono)">Substack · @joshuaklynepudadera</span>
+        <h3 class="card-title">Newsletter</h3>
+        <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-accent)">Subscribe →</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="experience" data-screen-label="Experience" style="padding:112px 0 0;scroll-margin-top:56px">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:22px">$ git log --author=shua --date=short</h6>
+    <h2 data-reveal="" style="font-size:clamp(28px,3.6vw,34px);margin-bottom:38px">Experience</h2>
+    <ol data-tl="" style="position:relative;list-style:none;margin:0;padding:0 0 0 26px;border-left:1px solid var(--color-divider);display:flex;flex-direction:column;gap:38px">
+      <span data-tl-fill="" aria-hidden="true" style="position:absolute;z-index:0;left:-1px;top:0;width:1px;height:100%;transform-origin:top center;transform:scaleY(0);background:linear-gradient(to bottom, color-mix(in srgb, var(--color-accent) 30%, transparent), var(--color-accent));transition:transform 340ms cubic-bezier(.77,0,.175,1);will-change:transform"></span>
+      <span data-tl-head="" aria-hidden="true" style="position:absolute;z-index:0;left:-4px;top:0;width:7px;height:7px;border-radius:50%;background:var(--color-accent);opacity:0;transform:translate3d(0,0,0);box-shadow:0 0 10px 3px color-mix(in srgb, var(--color-accent) 45%, transparent);transition:transform 340ms cubic-bezier(.77,0,.175,1), opacity 200ms cubic-bezier(.23,1,.32,1);will-change:transform,opacity"></span>
+      <li style="position:relative">
+        <button data-tl-jump="" type="button" aria-label="Jump to Backend AI Engineer — Intern at FlyRank AI" title="Backend AI Engineer — Intern at FlyRank AI" style="position:absolute;z-index:1;left:-42.5px;top:-4.5px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent">
+          <span data-tl-halo="" aria-hidden="true" style="position:absolute;width:25px;height:25px;border-radius:50%;border:1px solid color-mix(in srgb, var(--color-accent) 48%, transparent);opacity:0;transform:scale(0.72);transition:opacity 180ms cubic-bezier(.23,1,.32,1), transform 180ms cubic-bezier(.23,1,.32,1);pointer-events:none"></span>
+          <span data-tl-dot="" aria-hidden="true" style="width:11px;height:11px;border-radius:50%;background:var(--color-neutral-700);box-shadow:0 0 0 4px var(--color-bg);transition:background 240ms cubic-bezier(.23,1,.32,1), box-shadow 240ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1);pointer-events:none"></span>
+        </button>
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-500);margin:0 0 6px">Jun 2026 — present</p>
+        <h3 style="font-size:21px;margin:0 0 2px">Backend AI Engineer — Intern</h3>
+        <p style="margin:0 0 10px;font-size:15px;color:var(--color-accent-300)">FlyRank AI</p>
+        <ul style="max-width:62ch;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px;line-height:1.7;color:color-mix(in srgb, var(--color-text) 78%, transparent);text-wrap:pretty">
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Work from written specifications and ship written documentation with every deliverable.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Review AI-generated output against my own work line by line and document the differences.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>That audit surfaced a logic error neither version flagged on its own.</span></li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+          <span class="tag tag-outline">Specifications</span>
+          <span class="tag tag-outline">Documentation</span>
+          <span class="tag tag-outline">AI output review</span>
+        </div>
+      </li>
+      <li style="position:relative">
+        <button data-tl-jump="" type="button" aria-label="Jump to Data Entry Specialist at Nenita Farm Rice-Based Farm Training Center" title="Data Entry Specialist at Nenita Farm Rice-Based Farm Training Center" style="position:absolute;z-index:1;left:-42.5px;top:-4.5px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent">
+          <span data-tl-halo="" aria-hidden="true" style="position:absolute;width:25px;height:25px;border-radius:50%;border:1px solid color-mix(in srgb, var(--color-accent) 48%, transparent);opacity:0;transform:scale(0.72);transition:opacity 180ms cubic-bezier(.23,1,.32,1), transform 180ms cubic-bezier(.23,1,.32,1);pointer-events:none"></span>
+          <span data-tl-dot="" aria-hidden="true" style="width:11px;height:11px;border-radius:50%;background:var(--color-neutral-700);box-shadow:0 0 0 4px var(--color-bg);transition:background 240ms cubic-bezier(.23,1,.32,1), box-shadow 240ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1);pointer-events:none"></span>
+        </button>
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-500);margin:0 0 6px">Nov 2021 — present</p>
+        <h3 style="font-size:21px;margin:0 0 2px">Data Entry Specialist · Processing Officer / Registrar&nbsp;<span style="font-family: var(--font-heading); line-height: 1.12; letter-spacing: -0.018em; margin: 0px 0px 2px; outline-offset: 2px; outline-width: medium !important; outline-style: none !important; animation-duration: auto !important; animation-fill-mode: none !important;">·&nbsp;</span>Compliance Officer</h3>
+        <p style="margin:0 0 10px;font-size:15px;color:var(--color-accent-300)">Nenita Farm Rice-Based Farm Training Center</p>
+        <ul style="max-width:62ch;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px;line-height:1.7;color:color-mix(in srgb, var(--color-text) 78%, transparent);text-wrap:pretty">
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Build the Excel dashboards and status reports that track each batch across the EGACE stages: Enrolled, Graduated, Assessed, Certified, Employed, so programme staff can see where a cohort stands without opening the underlying records.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Encode trainee, programme and scholarship records into T2MIS and maintain the compliance documentation behind them.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Keep records audit-ready across three vocational programmes, working to agency documentation standards rather than internal convenience.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Coordinate scholarship batch records with TESDA offices through the full lifecycle, from enrolment through training and assessment to billing.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Prepare billing statements against government purchase orders.</span></li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+          <span class="tag tag-outline">Excel dashboards</span>
+          <span class="tag tag-outline">EGACE reporting</span>
+          <span class="tag tag-outline">T2MIS</span>
+          <span class="tag tag-outline">SOPs</span>
+          <span class="tag tag-outline">Audit checklists</span>
+          <span class="tag tag-outline">Billing reconciliation</span>
+        </div>
+      </li>
+      <li style="position:relative">
+        <button data-tl-jump="" type="button" aria-label="Jump to AI Content Producer &amp; Technical Writer, freelance" title="AI Content Producer &amp; Technical Writer, freelance" style="position:absolute;z-index:1;left:-42.5px;top:-4.5px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent">
+          <span data-tl-halo="" aria-hidden="true" style="position:absolute;width:25px;height:25px;border-radius:50%;border:1px solid color-mix(in srgb, var(--color-accent) 48%, transparent);opacity:0;transform:scale(0.72);transition:opacity 180ms cubic-bezier(.23,1,.32,1), transform 180ms cubic-bezier(.23,1,.32,1);pointer-events:none"></span>
+          <span data-tl-dot="" aria-hidden="true" style="width:11px;height:11px;border-radius:50%;background:var(--color-neutral-700);box-shadow:0 0 0 4px var(--color-bg);transition:background 240ms cubic-bezier(.23,1,.32,1), box-shadow 240ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1);pointer-events:none"></span>
+        </button>
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-500);margin:0 0 6px">Jan 2026 — Jun 2026</p>
+        <h3 style="font-size:21px;margin:0 0 2px">AI Content Producer &amp; Technical Writer</h3>
+        <p style="margin:0 0 10px;font-size:15px;color:var(--color-accent-300)">Freelance (Remote)</p>
+        <ul style="max-width:62ch;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px;line-height:1.7;color:color-mix(in srgb, var(--color-text) 78%, transparent);text-wrap:pretty">
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Long-form technical articles on AI and software engineering for professional audiences.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Built the research pipeline behind them in Claude.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Generated explanatory diagrams and facts sheets so verified facts read at a glance.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Shipped a custom skill that puts publication-ready drafts straight into Google Docs.</span></li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+          <span class="tag tag-outline">Claude</span>
+          <span class="tag tag-outline">Firecrawl</span>
+          <span class="tag tag-outline">Medium</span>
+          <span class="tag tag-outline">Diagrams</span><span class="tag tag-outline">Apify</span>
+        </div>
+      </li>
+      <li style="position:relative">
+        <button data-tl-jump="" type="button" aria-label="Jump to On-the-Job Trainee at LEADSolutions INC" title="On-the-Job Trainee at LEADSolutions INC" style="position:absolute;z-index:1;left:-42.5px;top:-4.5px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent">
+          <span data-tl-halo="" aria-hidden="true" style="position:absolute;width:25px;height:25px;border-radius:50%;border:1px solid color-mix(in srgb, var(--color-accent) 48%, transparent);opacity:0;transform:scale(0.72);transition:opacity 180ms cubic-bezier(.23,1,.32,1), transform 180ms cubic-bezier(.23,1,.32,1);pointer-events:none"></span>
+          <span data-tl-dot="" aria-hidden="true" style="width:11px;height:11px;border-radius:50%;background:var(--color-neutral-700);box-shadow:0 0 0 4px var(--color-bg);transition:background 240ms cubic-bezier(.23,1,.32,1), box-shadow 240ms cubic-bezier(.23,1,.32,1), transform 200ms cubic-bezier(.23,1,.32,1);pointer-events:none"></span>
+        </button>
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-500);margin:0 0 6px">Jun 2024 — Jul 2024</p>
+        <h3 style="font-size:21px;margin:0 0 2px">On-the-Job Trainee</h3>
+        <p style="margin:0 0 10px;font-size:15px;color:var(--color-accent-300)">LEADSolutions INC, Koronadal City</p>
+        <ul style="max-width:62ch;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px;line-height:1.7;color:color-mix(in srgb, var(--color-text) 78%, transparent);text-wrap:pretty">
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Developed a mobile application for transaction tracking in Flutter and Dart with Android Studio.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Integrated it with the company's existing web system hosted on Azure Cloud for seamless data exchange.</span></li>
+          <li style="display:flex;gap:10px;text-align:justify"><span aria-hidden="true" style="flex:none;color:var(--color-accent);font-family:var(--font-mono);font-size:13px;line-height:1.7">›</span><span>Designed the UI/UX so navigation and functionality stayed intuitive for the people entering transactions daily.</span></li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+          <span class="tag tag-outline">Flutter / Dart</span>
+          <span class="tag tag-outline">Android Studio</span>
+          <span class="tag tag-outline">Azure Cloud</span>
+          <span class="tag tag-outline">UI/UX</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="contact" data-screen-label="Contact" style="padding:112px 0 104px;scroll-margin-top:56px">
+    <h6 style="font-family:var(--font-mono);color:var(--color-accent);text-transform:none;letter-spacing:0.02em;margin-bottom:22px">$ mail -s "hello" klynejoshua13@gmail.com</h6>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:start">
+      <div>
+        <h2 data-reveal="" style="font-size:clamp(28px,4vw,38px);margin-bottom:16px">Interested in working together?</h2>
+        <p style="font-size: 16px; line-height: 1.75; color: color-mix(in srgb, var(--color-text) 80%, transparent); max-width: 48ch; text-wrap: pretty; text-align: justify">Open to full-time work in research, verification and technical writing, and to freelance or consulting engagements where claims need checking before they ship. Backend AI and documentation work included.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:22px 0 18px">
+          <a href="mailto:klynejoshua13@gmail.com" style="font-family:var(--font-mono);font-size:clamp(15px,2.2vw,21px);text-decoration:none;border-bottom:1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);padding-bottom:4px">klynejoshua13@gmail.com</a>
+          <button class="btn btn-secondary" type="button" onClick="{{ copyEmail }}" aria-label="Copy email address" style="font-size:12px;font-family:var(--font-mono);transition:transform 140ms cubic-bezier(.23,1,.32,1)" style-active="transform:scale(0.97)">{{ copyLabel }}</button>
+        </div>
+        <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-neutral-500);margin:0 0 4px">0939 705 8119</p>
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-500);margin:0">// replies within one business day</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:26px">
+          <a href="https://github.com/shuakyle21" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;border:1px solid color-mix(in srgb, var(--color-accent) 42%, transparent);background:color-mix(in srgb, var(--color-accent) 9%, transparent);color:var(--color-neutral-300);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), background 160ms cubic-bezier(.23,1,.32,1), border-color 160ms cubic-bezier(.23,1,.32,1), color 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);background:color-mix(in srgb, var(--color-accent) 18%, transparent);border-color:color-mix(in srgb, var(--color-accent) 70%, transparent);color:var(--color-accent-300)" style-active="transform:translateY(0) scale(0.97)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-2.91-.88-2.91-2.79 0-.55.2-1.02.51-1.39-.05-.13-.22-.65.05-1.35 0 0 .68-.21 2.23.82a4.6 4.6 0 0 1 2.03-.42c.69 0 1.38.09 2.03.42 1.55-1.05 2.23-.82 2.23-.82.27.7.1 1.22.05 1.35.32.37.51.84.51 1.39 0 1.92-1.14 2.59-2.92 2.79.29.26.55.75.55 1.51 0 1.09-.01 1.96-.01 2.23 0 .21.15.46.55.38A7.99 7.99 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg></a>
+          <a href="https://www.linkedin.com/in/joshua-klyne-pudadera-b76b73368/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;border:1px solid color-mix(in srgb, var(--color-accent) 42%, transparent);background:color-mix(in srgb, var(--color-accent) 9%, transparent);color:var(--color-neutral-300);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), background 160ms cubic-bezier(.23,1,.32,1), border-color 160ms cubic-bezier(.23,1,.32,1), color 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);background:color-mix(in srgb, var(--color-accent) 18%, transparent);border-color:color-mix(in srgb, var(--color-accent) 70%, transparent);color:var(--color-accent-300)" style-active="transform:translateY(0) scale(0.97)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146Zm4.943 12.248V6.169H2.542v7.225h2.401Zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016Zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.868 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4Z"></path></svg></a>
+          <a href="https://substack.com/@joshuaklynepudadera" target="_blank" rel="noreferrer" aria-label="Substack" title="Substack" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;border:1px solid color-mix(in srgb, var(--color-accent) 42%, transparent);background:color-mix(in srgb, var(--color-accent) 9%, transparent);color:var(--color-neutral-300);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), background 160ms cubic-bezier(.23,1,.32,1), border-color 160ms cubic-bezier(.23,1,.32,1), color 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);background:color-mix(in srgb, var(--color-accent) 18%, transparent);border-color:color-mix(in srgb, var(--color-accent) 70%, transparent);color:var(--color-accent-300)" style-active="transform:translateY(0) scale(0.97)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15 3.604H1V1.5h14v2.104ZM1 5.708h14V16l-7-3.926L1 16V5.708ZM15 9.24H1V7.135h14V9.24Z"></path></svg></a>
+          <a href="https://doi.org/10.51583/IJLTEMAS.2026.150600192" target="_blank" rel="noreferrer" aria-label="Published paper (DOI)" title="Published paper (DOI)" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;border:1px solid color-mix(in srgb, var(--color-accent) 42%, transparent);background:color-mix(in srgb, var(--color-accent) 9%, transparent);color:var(--color-neutral-300);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), background 160ms cubic-bezier(.23,1,.32,1), border-color 160ms cubic-bezier(.23,1,.32,1), color 160ms cubic-bezier(.23,1,.32,1)" style-hover="transform:translateY(-2px);background:color-mix(in srgb, var(--color-accent) 18%, transparent);border-color:color-mix(in srgb, var(--color-accent) 70%, transparent);color:var(--color-accent-300)" style-active="transform:translateY(0) scale(0.97)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM1.5 8a6.5 6.5 0 0 1 .43-2.32h2.3a15.6 15.6 0 0 0 0 4.64h-2.3A6.5 6.5 0 0 1 1.5 8Zm.99 3.82h2.02c.28.94.66 1.77 1.11 2.42a6.52 6.52 0 0 1-3.13-2.42ZM4.5 8c0-.82.06-1.6.17-2.32h6.66c.11.72.17 1.5.17 2.32s-.06 1.6-.17 2.32H4.67A15.4 15.4 0 0 1 4.5 8Zm1.11-6.24c-.45.65-.83 1.48-1.11 2.42H2.49a6.52 6.52 0 0 1 3.12-2.42ZM8 1.5c.85 0 1.79 1 2.35 2.68H5.65C6.21 2.5 7.15 1.5 8 1.5Zm0 13c-.85 0-1.79-1-2.35-2.68h4.7C9.79 13.5 8.85 14.5 8 14.5Zm2.39-.26c.45-.65.83-1.48 1.11-2.42h2.01a6.52 6.52 0 0 1-3.12 2.42Zm1.38-3.92a15.6 15.6 0 0 0 0-4.64h2.3a6.5 6.5 0 0 1 0 4.64h-2.3Zm-.27-6.24c-.28-.94-.66-1.77-1.11-2.42a6.52 6.52 0 0 1 3.12 2.42h-2.01Z"></path></svg></a>
+        </div>
+      </div>
+
+      <div class="card elev-sm" style="padding:24px;gap:16px">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:10px;padding:14px 0" aria-live="polite">
+            <span style="font-family:var(--font-mono);font-size:13px;color:var(--color-accent)">✓ message sent</span>
+            <h3 style="font-size:20px;margin:0">Thanks — that landed.</h3>
+            <p style="margin:0;font-size:14px;color:color-mix(in srgb, var(--color-text) 75%, transparent)">{{ sentLine }}</p>
+            <button class="btn btn-secondary" type="button" onClick="{{ resetForm }}" style="align-self:flex-start;margin-top:8px;font-size:13px">Send another</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submit }}" novalidate="" style="display:flex;flex-direction:column;gap:14px">
+            <div class="field">
+              <label for="cf-name">Name</label>
+              <input class="input" id="cf-name" name="name" type="text" autoComplete="name" value="{{ nameValue }}" onChange="{{ onName }}" aria-invalid="{{ nameInvalid }}" aria-describedby="cf-name-err">
+              <span id="cf-name-err" style="display:{{ nameErrDisplay }};font-size:11px;color:var(--color-accent-300);margin-top:5px">{{ nameError }}</span>
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input class="input" id="cf-email" name="email" type="email" autoComplete="email" value="{{ emailValue }}" onChange="{{ onEmail }}" aria-invalid="{{ emailInvalid }}" aria-describedby="cf-email-err">
+              <span id="cf-email-err" style="display:{{ emailErrDisplay }};font-size:11px;color:var(--color-accent-300);margin-top:5px">{{ emailError }}</span>
+            </div>
+            <div class="field">
+              <label for="cf-message">What do you need checked or written?</label>
+              <textarea class="input" id="cf-message" name="message" rows="5" value="{{ messageValue }}" onChange="{{ onMessage }}" aria-invalid="{{ messageInvalid }}" aria-describedby="cf-message-err"></textarea>
+              <span id="cf-message-err" style="display:{{ messageErrDisplay }};font-size:11px;color:var(--color-accent-300);margin-top:5px">{{ messageError }}</span>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit" style="padding:11px 18px;font-size:14px;transition:transform 140ms cubic-bezier(.23,1,.32,1)" style-active="transform:scale(0.97)">Send message</button>
+            <p style="margin:0;font-family:var(--font-mono);font-size:11px;color:var(--color-neutral-600)">// prototype — wire to a form handler or an API route</p>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer style="position:relative;z-index:1;border-top:1px solid var(--color-divider);background:color-mix(in srgb, var(--color-bg) 82%, transparent);backdrop-filter:blur(6px)">
+  <div style="max-width:1120px;margin:0 auto;padding:26px 24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--color-neutral-600)">
+    <span>© 2026 Joshua Klyne P. Pudadera · Banga, South Cotabato</span>
+    <a href="#top" style="text-decoration:none">back to top ↑</a>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;typingSpeedMs&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:36,&quot;min&quot;:20,&quot;max&quot;:180,&quot;step&quot;:2,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;heroPortrait&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showWriting&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  roles = ["Data Specialist", "Backend AI Intern", "Published Researcher", "AI Workflow Analyst"];
+  // Monochrome logo marks at neutral-400, so the rows read as tone, not a rainbow.
+  stack = {
+    rowA: [["Claude", "claude"], ["Gemini", "googlegemini"], ["Hugging Face", "huggingface"], ["Python", "python"], ["Jupyter", "jupyter"], ["Colab", "googlecolab"], ["pandas", "pandas"], ["NumPy", "numpy"], ["scikit-learn", "scikitlearn"], ["Streamlit", "streamlit"]],
+    rowB: [["Looker Studio", "looker"], ["MySQL", "mysql"], ["GitHub Actions", "githubactions"], ["QGIS", "qgis"], ["Google Earth", "googleearth"], ["Sheets", "googlesheets"], ["Docs", "googledocs"], ["Drive", "googledrive"], ["Forms", "googleforms"], ["Notion", "notion"], ["Markdown", "markdown"]],
+    rowC: [["JavaScript", "javascript"], ["TypeScript", "typescript"], ["React", "react"], ["Node.js", "nodedotjs"], ["FastAPI", "fastapi"], ["PostgreSQL", "postgresql"], ["Git", "git"], ["GitHub", "github"], ["Flutter", "flutter"], ["Dart", "dart"], ["Android Studio", "androidstudio"], ["Figma", "figma"], ["Postman", "postman"]]
+  };
+
+  logos(key) {
+    return this.stack[key].map((t) => ({ name: t[0], src: "https://cdn.simpleicons.org/" + t[1] + "/b2b6ca" }));
+  }
+  state = {
+    typed: "", ri: 0, ci: 0, deleting: false,
+    narrow: false, menuOpen: false, sent: false, copied: false,
+    form: { name: "", email: "", message: "" }, errors: {}
+  };
+
+  get reduced() {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  componentDidMount() {
+    this.onResize = () => {
+      this.setState({ narrow: window.innerWidth < 900 });
+      this.moveHighlight();
+    };
+    this.onResize();
+    window.addEventListener("resize", this.onResize);
+
+    if (this.reduced) this.setState({ typed: this.roles[0] });
+    else this.type();
+
+    this.setupReveal();
+    this.setupSpy();
+    this.setupMarquee();
+    this.setupTimeline();
+  }
+
+  // Stepped timeline tracker: the fill and head travel node-to-node and settle ON the
+  // current entry's dot (eased in CSS), instead of gliding continuously with scroll.
+  setupTimeline() {
+    const ol = document.querySelector("[data-tl]");
+    if (!ol) return;
+    const fill = ol.querySelector("[data-tl-fill]");
+    const head = ol.querySelector("[data-tl-head]");
+    const nodes = Array.from(ol.querySelectorAll("[data-tl-jump]"));
+    const dots = nodes.map((b) => b.querySelector("[data-tl-dot]"));
+    const halos = nodes.map((b) => b.querySelector("[data-tl-halo]"));
+    const ACTIVE = "0 0 0 4px var(--color-bg), 0 0 14px 3px color-mix(in srgb, var(--color-accent) 42%, transparent)";
+    const IDLE = "0 0 0 4px var(--color-bg)";
+
+    // Reduced motion: show the completed state, no scroll listener.
+    if (this.reduced) {
+      fill.style.transform = "scaleY(1)";
+      dots.forEach((d) => { d.style.background = "var(--color-accent)"; d.style.boxShadow = ACTIVE; });
+      return;
+    }
+
+    let frame = 0, lit = -1;
+    // Dots are absolute inside their LI, so offsetTop is LI-relative — measure against the OL.
+    const offsets = () => nodes.map((b) => b.parentElement.offsetTop + b.offsetTop + 16);
+    let marks = offsets();
+    const paint = () => {
+      frame = 0;
+      const r = ol.getBoundingClientRect();
+      const lineY = window.innerHeight * 0.42 - r.top;
+      let n = 0;
+      for (const m of marks) if (m <= lineY) n++;
+      if (n === lit) return;
+      lit = n;
+      const y = n > 0 ? marks[n - 1] : 0;
+      fill.style.transform = "scaleY(" + (y / r.height) + ")";
+      head.style.transform = "translate3d(0," + (y - 3.5) + "px,0)";
+      head.style.opacity = n > 0 ? "1" : "0";
+      dots.forEach((d, i) => {
+        const on = i < n;
+        d.style.background = on ? "var(--color-accent)" : "var(--color-neutral-700)";
+        d.style.boxShadow = on ? ACTIVE : IDLE;
+        // Don't clobber a node the user is hovering or focusing.
+        const b = d.parentElement;
+        if (!b.matches(":focus-visible") && !b.matches(":hover")) d.style.transform = on ? "scale(1.12)" : "scale(1)";
+      });
+    };
+    this.onTimelineScroll = () => { if (!frame) frame = requestAnimationFrame(paint); };
+    this.onTimelineResize = () => { marks = offsets(); lit = -1; this.onTimelineScroll(); };
+    window.addEventListener("scroll", this.onTimelineScroll, { passive: true });
+    window.addEventListener("resize", this.onTimelineResize);
+    // Inter loads async; rewrapped text shifts the LI offsets, so re-measure once fonts settle.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.onTimelineResize);
+    paint();
+
+    // Click a node to jump to its entry. Native smooth scrolling, honouring reduced motion.
+    const fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    nodes.forEach((b, i) => {
+      const dot = dots[i], halo = halos[i];
+      const base = () => (i < lit ? "scale(1.12)" : "scale(1)");
+      b.addEventListener("click", () => {
+        const y = b.closest("li").getBoundingClientRect().top + window.scrollY - 96;
+        window.scrollTo({ top: y, behavior: this.reduced ? "auto" : "smooth" });
+      });
+      const lift = () => { halo.style.opacity = "0.9"; halo.style.transform = "scale(1)"; dot.style.transform = i < lit ? "scale(1.3)" : "scale(1.22)"; };
+      const drop = () => { halo.style.opacity = "0"; halo.style.transform = "scale(0.72)"; dot.style.transform = base(); };
+      if (fine) {
+        b.addEventListener("mouseenter", lift);
+        b.addEventListener("mouseleave", drop);
+      }
+      // Keyboard focus lifts the halo; mouse focus is already handled by hover.
+      b.addEventListener("focus", () => { if (b.matches(":focus-visible")) lift(); });
+      b.addEventListener("blur", drop);
+      // Press: quick settle under the cursor (press feedback stays 100-160ms), then release.
+      b.addEventListener("pointerdown", () => { dot.style.transitionDuration = "120ms"; dot.style.transform = "scale(0.94)"; });
+      b.addEventListener("pointerup", () => { dot.style.transitionDuration = ""; dot.style.transform = fine ? "scale(1.22)" : base(); });
+      b.addEventListener("pointercancel", () => { dot.style.transitionDuration = ""; drop(); });
+    });
+  }
+
+  // Reduced motion: no travel — the rows become a plain horizontal scroller.
+  setupMarquee() {
+    if (!this.reduced) return;
+    document.querySelectorAll("[data-marquee]").forEach((row) => {
+      row.style.overflowX = "auto";
+      const track = row.querySelector("[data-track]");
+      if (track) track.style.animation = "none";
+    });
+  }
+
+  // Splitting-text style reveal: hidden synchronously before paint, released on intersect.
+  setupReveal() {
+    const nodes = Array.from(document.querySelectorAll("[data-reveal]"));
+    if (this.reduced) return;
+    nodes.forEach((n) => {
+      n.style.opacity = "0";
+      n.style.filter = "blur(4px)";
+      n.style.transform = "translateY(12px)";
+      n.style.transition = "opacity 440ms cubic-bezier(.23,1,.32,1), transform 440ms cubic-bezier(.23,1,.32,1), filter 440ms ease";
+    });
+    const release = (el) => {
+      el.style.opacity = "1";
+      el.style.filter = "none";
+      el.style.transform = "none";
+      if (this.revealIO) this.revealIO.unobserve(el);
+    };
+    this.revealIO = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        // Fail open: anything at or above the fold is released whether or not
+        // the observer caught it intersecting (fast scrolls and anchor jumps).
+        if (e.isIntersecting || e.boundingClientRect.top < window.innerHeight) release(e.target);
+      });
+    }, { threshold: 0.25 });
+    nodes.forEach((n) => this.revealIO.observe(n));
+    this.sweep = () => {
+      nodes.forEach((n) => {
+        if (n.style.opacity !== "0") return;
+        if (n.getBoundingClientRect().top < window.innerHeight) release(n);
+      });
+    };
+    this.onScroll = () => {
+      if (this.sweepQueued) return;
+      this.sweepQueued = true;
+      requestAnimationFrame(() => { this.sweepQueued = false; this.sweep(); });
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.sweep();
+  }
+
+  countUp(el) {
+    const target = parseFloat(el.getAttribute("data-count"));
+    const suffix = el.getAttribute("data-suffix") || "";
+    const group = el.getAttribute("data-group") === "1";
+    const fmt = (v) => (group ? Math.round(v).toLocaleString("en-US") : String(Math.round(v))) + suffix;
+    if (this.reduced) { el.textContent = fmt(target); return; }
+    const dur = 900, t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      el.textContent = fmt(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    el.textContent = fmt(0);
+    requestAnimationFrame(step);
+  }
+
+  moveHighlight() {
+    const hl = document.querySelector("[data-navhl]");
+    const wrap = document.querySelector("[data-navwrap]");
+    if (!hl || !wrap) return;
+    const active = wrap.querySelector('[data-navlink][aria-current="page"]');
+    if (!active) { hl.style.opacity = "0"; return; }
+    const a = active.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+    hl.style.transform = "translate3d(" + (a.left - w.left) + "px,0,0) scaleX(" + a.width + ")";
+    hl.style.opacity = "1";
+  }
+
+  setupSpy() {
+    // Resolve the active section from a line just under the sticky header, not the
+    // viewport middle: short sections (Capabilities) never own the midline after a
+    // click, so a midline observer hands the highlight to the section below them.
+    const links = Array.from(document.querySelectorAll("[data-navlink]"));
+    const ids = ["about", "skills", "stack", "work", "writing", "experience"];
+    this.resolveSpy = () => {
+      const line = 132;
+      let current = null;
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = ids[ids.length - 1];
+      if (current === this.activeId) return;
+      this.activeId = current;
+      links.forEach((a) => {
+        if (current && a.getAttribute("href") === "#" + current) a.setAttribute("aria-current", "page");
+        else a.removeAttribute("aria-current");
+      });
+      this.moveHighlight();
+    };
+    this.spyScroll = () => {
+      if (this.spyQueued) return;
+      this.spyQueued = true;
+      requestAnimationFrame(() => { this.spyQueued = false; this.resolveSpy(); });
+    };
+    window.addEventListener("scroll", this.spyScroll, { passive: true });
+    this.resolveSpy();
+
+    const counters = Array.from(document.querySelectorAll("[data-count]"));
+    this.countIO = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        this.countUp(e.target);
+        this.countIO.unobserve(e.target);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach((c) => this.countIO.observe(c));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.onResize);
+    if (this.onScroll) window.removeEventListener("scroll", this.onScroll);
+    if (this.onTimelineScroll) {
+      window.removeEventListener("scroll", this.onTimelineScroll);
+      window.removeEventListener("resize", this.onTimelineResize);
+    }
+    if (this.spyScroll) window.removeEventListener("scroll", this.spyScroll);
+    [this.revealIO, this.countIO].forEach((io) => io && io.disconnect());
+    clearTimeout(this.t);
+    clearTimeout(this.copyT);
+  }
+
+  type() {
+    const speed = this.props.typingSpeedMs ?? 36;
+    const { ri, ci, deleting } = this.state;
+    const word = this.roles[ri % this.roles.length];
+    let next, delay;
+    if (!deleting) {
+      next = { ci: ci + 1, typed: word.slice(0, ci + 1) };
+      delay = speed;
+      if (ci + 1 >= word.length) { next.deleting = true; delay = 1600; }
+    } else if (ci > 0) {
+      next = { ci: ci - 1, typed: word.slice(0, ci - 1) };
+      delay = Math.max(18, speed * 0.45);
+    } else {
+      next = { deleting: false, ci: 0, typed: "", ri: (ri + 1) % this.roles.length };
+      delay = 280;
+    }
+    this.setState(next);
+    this.t = setTimeout(() => this.type(), delay);
+  }
+
+  validate(f) {
+    const errors = {};
+    if (!f.name.trim()) errors.name = "Tell me what to call you.";
+    if (!f.email.trim()) errors.email = "An email address, so I can reply.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) errors.email = "That address doesn't look complete.";
+    if (f.message.trim().length < 12) errors.message = "A sentence or two about the work helps.";
+    return errors;
+  }
+
+  renderVals() {
+    const s = this.state, err = s.errors, narrow = s.narrow;
+    const set = (k) => (e) => {
+      const form = Object.assign({}, this.state.form, { [k]: e.target.value });
+      const errors = Object.assign({}, this.state.errors);
+      delete errors[k];
+      this.setState({ form: form, errors: errors });
+    };
+    const setPlay = (state) => (e) => {
+      if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+      const track = e.currentTarget.querySelector("[data-track]");
+      if (track) track.style.animationPlayState = state;
+    };
+    return {
+      typed: s.typed,
+      rowA: this.logos("rowA"), rowB: this.logos("rowB"), rowC: this.logos("rowC"),
+      pauseRow: setPlay("paused"), resumeRow: setPlay("running"),
+      logoFallback: (e) => { e.currentTarget.style.display = "none"; },
+      linksDisplay: narrow ? "none" : "flex",
+      burgerDisplay: narrow ? "inline-flex" : "none",
+      drawerDisplay: narrow && s.menuOpen ? "flex" : "none",
+      burgerGlyph: s.menuOpen ? "\u2715" : "\u2261",
+      menuExpanded: s.menuOpen ? "true" : "false",
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      toggleFlip: () => this.setState((st) => ({ flipped: !st.flipped })),
+      flipTransform: s.flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+      flipFile: s.flipped ? "education.json" : "portrait.jpg",
+      flipLabel: s.flipped ? "\u2190 portrait" : "About me \u2192",
+      frontHidden: s.flipped ? "true" : "false",
+      backHidden: s.flipped ? "false" : "true",
+      terminalDisplay: (this.props.heroPortrait ?? true) ? "flex" : "none",
+      writingDisplay: (this.props.showWriting ?? true) ? "flex" : "none",
+      copyLabel: s.copied ? "\u2713 copied" : "copy",
+      copyEmail: () => {
+        const email = "klynejoshua13@gmail.com";
+        if (navigator.clipboard) navigator.clipboard.writeText(email).catch(() => {});
+        this.setState({ copied: true });
+        clearTimeout(this.copyT);
+        this.copyT = setTimeout(() => this.setState({ copied: false }), 1800);
+      },
+      sent: s.sent,
+      notSent: !s.sent,
+      sentLine: s.sent ? "I'll get back to " + (s.form.email || "you") + " within a business day." : "",
+      nameValue: s.form.name, emailValue: s.form.email, messageValue: s.form.message,
+      onName: set("name"), onEmail: set("email"), onMessage: set("message"),
+      nameError: err.name || "", emailError: err.email || "", messageError: err.message || "",
+      nameErrDisplay: err.name ? "block" : "none",
+      emailErrDisplay: err.email ? "block" : "none",
+      messageErrDisplay: err.message ? "block" : "none",
+      nameInvalid: err.name ? "true" : "false",
+      emailInvalid: err.email ? "true" : "false",
+      messageInvalid: err.message ? "true" : "false",
+      submit: (e) => {
+        e.preventDefault();
+        const errors = this.validate(this.state.form);
+        if (Object.keys(errors).length) { this.setState({ errors: errors }); return; }
+        this.setState({ errors: {}, sent: true });
+      },
+      resetForm: () => this.setState({ sent: false, form: { name: "", email: "", message: "" }, errors: {} })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
