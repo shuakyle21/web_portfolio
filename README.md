@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shua.dev — portfolio
 
-## Getting Started
+Joshua Klyne P. Pudadera's portfolio: research, verification and technical writing.
+Built with **Next.js (App Router) + TypeScript + Tailwind**, implementing the
+Claude Design project "Claude Code portfolio website" (Nocturne design system).
+The visual source of truth lives in [`design-reference/`](design-reference/) —
+`Portfolio.dc.html`, `Case Study.dc.html`, and the Nocturne tokens.
 
-First, run the development server:
+## Develop
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `app/` — layout (fonts, metadata, JSON-LD), home page, `/work/[slug]` case-study
+  route, `/api/contact` form handler, `sitemap.ts`, `robots.ts`
+- `components/` — one component per section (`Nav`, `Hero`, `About`, `SkillsCloud`,
+  `StackMarquee`, `ProjectGrid`, `Writing`, `ExperienceTimeline`, `ContactCTA`,
+  `Footer`) plus the animation primitives (`TypingText`, `CountUp`, `Reveal`,
+  `HighlightSweep`, `CopyEmailButton`)
+- `lib/data/` — every editable fact: `profile.ts`, `skills.ts`, `work.ts`
+  (incl. the dengue case-study object), `experience.ts`, `links.ts`
+- `app/globals.css` — the Nocturne token system, component classes, keyframes and
+  the three easing curves (`--ease-out`, `--ease-std`, `--ease-nav`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All scroll-triggered effects fire once and everything sits behind
+`prefers-reduced-motion` (marquees become plain scrollers, counters and reveals
+render final state).
 
-## Learn More
+## Contact form
 
-To learn more about Next.js, take a look at the following resources:
+`/api/contact` validates with the same zod schema as the client, has a honeypot
+and a submit-speed check. Set `RESEND_API_KEY` and `CONTACT_TO_EMAIL` to deliver
+via Resend; without them, submissions are accepted and logged (dev mode).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Vercel** (recommended): push the repo and import it — the API route, sitemap
+  and SSG case study all work as-is. Env vars: `NEXT_PUBLIC_SITE_URL`,
+  `RESEND_API_KEY`, `CONTACT_TO_EMAIL`.
+- **GitHub Pages**: possible via `output: "export"` in `next.config.ts`, but the
+  `/api/contact` route must be dropped — point the form at a form service
+  (Formspree etc.) instead.
 
-## Deploy on Vercel
+## Content still needed (from IMPLEMENTATION.md §12)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Real screenshots for the EGACE, pipeline, medium-draft and TESDA work cards,
+  and the case-study figure slots (`components/ImageSlot.tsx` placeholders).
+- Individual Medium article titles/URLs for the Writing section.
+- A public repo URL for the dengue dataset, if one exists.
+- An `/og.png` social share image.
