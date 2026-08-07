@@ -23,13 +23,13 @@ export function ContactCTA() {
             Interested in working together?
           </Reveal>
           <p
+            className="prose"
             style={{
               fontSize: 16,
               lineHeight: 1.75,
               color: "color-mix(in srgb, var(--color-text) 80%, transparent)",
               maxWidth: "48ch",
               textWrap: "pretty",
-              textAlign: "justify",
             }}
           >
             Open to full-time work in research, verification and technical writing, and

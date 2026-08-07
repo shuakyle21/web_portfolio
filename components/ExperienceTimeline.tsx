@@ -214,7 +214,7 @@ export function ExperienceTimeline() {
               }}
             >
               {job.bullets.map((bullet) => (
-                <li key={bullet} style={{ display: "flex", gap: 10, textAlign: "justify" }}>
+                <li key={bullet} style={{ display: "flex", gap: 10 }}>
                   <span
                     aria-hidden="true"
                     style={{
@@ -227,7 +227,10 @@ export function ExperienceTimeline() {
                   >
                     ›
                   </span>
-                  <span>{bullet}</span>
+                  {/* .prose lives on the span, not the flex <li> — text-align
+                      does nothing on a flex container and only ever worked
+                      here by inheriting down into this child. */}
+                  <span className="prose">{bullet}</span>
                 </li>
               ))}
             </ul>

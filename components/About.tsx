@@ -11,7 +11,6 @@ const bodyStyle: React.CSSProperties = {
   color: "color-mix(in srgb, var(--color-text) 80%, transparent)",
   maxWidth: "58ch",
   textWrap: "pretty",
-  textAlign: "justify",
 };
 
 export function About() {
@@ -29,13 +28,13 @@ export function About() {
           <Reveal style={{ fontSize: "clamp(28px,3.6vw,34px)", marginBottom: 18 }}>
             I check things before they ship
           </Reveal>
-          <p style={bodyStyle}>{profile.about[0]}</p>
-          <p style={bodyStyle}>
+          <p className="prose" style={bodyStyle}>{profile.about[0]}</p>
+          <p className="prose" style={bodyStyle}>
             {profile.about[1]}{" "}
             <HighlightSweep>{profile.aboutHighlight}</HighlightSweep>
             {profile.aboutHighlightTail}
           </p>
-          <p style={bodyStyle}>{profile.about[2]}</p>
+          <p className="prose" style={bodyStyle}>{profile.about[2]}</p>
           <p
             style={{
               fontFamily: "var(--font-mono)",

@@ -32,7 +32,7 @@ export function StackMarquee() {
       <Reveal style={{ fontSize: "clamp(28px,3.6vw,34px)", marginBottom: 8 }}>
         Tech stack
       </Reveal>
-      <p className="text-muted" style={{ maxWidth: "54ch", marginBottom: 34 }}>
+      <p className="text-muted prose" style={{ maxWidth: "54ch", marginBottom: 34 }}>
         The tools the work actually runs on. Analysis on top, dashboards and
         documentation in the middle, what ships at the bottom.
       </p>

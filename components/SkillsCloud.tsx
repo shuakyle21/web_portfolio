@@ -8,7 +8,7 @@ export function SkillsCloud() {
       <Reveal style={{ fontSize: "clamp(28px,3.6vw,34px)", marginBottom: 8 }}>
         Capabilities
       </Reveal>
-      <p className="text-muted" style={{ maxWidth: "56ch", marginBottom: 34 }}>
+      <p className="text-muted prose" style={{ maxWidth: "56ch", marginBottom: 34 }}>
         Dashboards and analysis first, then the engineering that supports the data work
         and keeps it running. Written from what I have shipped, not what I have read
         about.

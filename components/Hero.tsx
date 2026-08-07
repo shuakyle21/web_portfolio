@@ -287,7 +287,11 @@ export function Hero() {
           }}
         >
           {profile.intro.map((par, i) => (
-            <p key={i} style={{ margin: i < profile.intro.length - 1 ? "0 0 14px" : 0, textAlign: "justify" }}>
+            <p
+              key={i}
+              className="prose"
+              style={{ margin: i < profile.intro.length - 1 ? "0 0 14px" : 0 }}
+            >
               {par}
             </p>
           ))}

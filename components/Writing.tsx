@@ -36,7 +36,7 @@ export function Writing() {
       <Reveal style={{ fontSize: "clamp(28px,3.6vw,34px)", marginBottom: 8 }}>
         Writing, and the gate before it
       </Reveal>
-      <p className="text-muted" style={{ maxWidth: "56ch", marginBottom: 34 }}>
+      <p className="text-muted prose" style={{ maxWidth: "56ch", marginBottom: 34 }}>
         Long-form technical articles on AI and software engineering, 1,200 to 2,500
         words, for professional audiences on Medium and LinkedIn. Every one of them went
         through these five steps.

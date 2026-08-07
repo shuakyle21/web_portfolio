@@ -364,6 +364,97 @@ textarea.input {
   color: var(--color-accent);
 }
 
+/* — body prose — */
+/* Justified text without hyphenation opens white "rivers", and the damage
+   grows as the measure narrows. Every justified block here gets both.
+   Depends on <html lang="en"> (set in app/layout.tsx) — hyphenation is
+   language-driven and silently does nothing without it. Body copy only:
+   card bodies, captions, table cells and mono blocks stay ragged-right,
+   because justifying 11-13px text in a 260px column looks broken. */
+.prose {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+/* — screen-reader-only, but still focusable — */
+/* Clipped, not offset. The `left: -9999px` trick is fine for a tabIndex={-1}
+   honeypot, but on a focusable radio it makes the browser scroll the viewport
+   9999px sideways when arrow keys move focus. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* — rating widget — */
+.rate-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.rate-fieldset > legend {
+  padding: 0; /* the UA gives legend horizontal padding by default */
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-neutral-400);
+}
+.rate-row {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 12px;
+}
+.rate-item {
+  position: relative; /* keeps the clipped input anchored to its own star */
+  display: inline-flex;
+}
+.rate-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; /* touch target; the glyph inside is 26px */
+  height: 44px;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  /* neutral-600, not -700: #595d6c on the page ground is 2.7:1, under the 3:1
+     WCAG 1.4.11 wants for meaningful graphics. #75798c is 4.1:1. */
+  color: var(--color-neutral-600);
+  transition:
+    color 110ms var(--ease-std),
+    transform 160ms var(--ease-out);
+}
+.rate-star[data-filled="true"] {
+  color: var(--color-accent);
+}
+.rate-input:focus-visible + .rate-star {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.rate-star:active {
+  transform: scale(0.97); /* matches .btn:active */
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Scoped to .rate-row via :has() — a plain fieldset:hover would light all
+     five stars whenever the cursor merely crossed the legend. CSS can't select
+     preceding siblings, so the preview is expressed backwards: light everything
+     while any star is hovered, then unlight everything after the hovered one. */
+  .rate-row:has(.rate-item:hover) .rate-star {
+    color: var(--color-accent);
+  }
+  .rate-row .rate-item:hover ~ .rate-item .rate-star {
+    color: var(--color-neutral-600);
+  }
+}
+
 /* — navigation — */
 .nav {
   display: flex;
@@ -478,6 +569,24 @@ textarea.input {
     transform: translate3d(2%, 1.5%, 0);
   }
 }
+/* Entrance for the comment field and thank-you panel. Under 300ms, ease-out,
+   and from translateY(4px) rather than scale(0). The `to` state is the natural
+   resting state, so the prefers-reduced-motion block below (which clamps
+   animation-duration) lands correctly with no extra rule. */
+@keyframes noct-rate-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rate-enter {
+  animation: noct-rate-in 220ms var(--ease-out) both;
+}
+
 @keyframes noct-sweep {
   from {
     background-size: 0% 38%;

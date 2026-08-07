@@ -138,7 +138,9 @@ export default async function CaseStudyPage({
           >
             {item.title}
           </h1>
-          <p style={{ ...bodyText, fontSize: 18, lineHeight: 1.7, maxWidth: "58ch" }}>{cs.intro}</p>
+          <p className="prose" style={{ ...bodyText, fontSize: 18, lineHeight: 1.7, maxWidth: "58ch" }}>
+            {cs.intro}
+          </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 7, margin: "26px 0 24px" }}>
             <span className="tag tag-accent">{cs.tags[0]}</span>
             <span className="tag tag-neutral">{cs.period}</span>
@@ -216,7 +218,7 @@ export default async function CaseStudyPage({
           {sectionHead("01", "problem")}
           <h2 style={{ fontSize: "clamp(26px,3.4vw,32px)", marginBottom: 16 }}>{cs.problem.heading}</h2>
           {cs.problem.body.map((par) => (
-            <p key={par.slice(0, 24)} style={bodyText}>
+            <p key={par.slice(0, 24)} className="prose" style={bodyText}>
               {par}
             </p>
           ))}
@@ -227,7 +229,10 @@ export default async function CaseStudyPage({
             <span className="card-kicker" style={{ fontFamily: "var(--font-mono)" }}>
               {cs.problem.audienceKicker}
             </span>
-            <p style={{ margin: 0, fontSize: 15, lineHeight: 1.7, color: "color-mix(in srgb, var(--color-text) 82%, transparent)" }}>
+            <p
+              className="prose"
+              style={{ margin: 0, fontSize: 15, lineHeight: 1.7, color: "color-mix(in srgb, var(--color-text) 82%, transparent)" }}
+            >
               {cs.problem.audience}
             </p>
           </div>
@@ -256,7 +261,9 @@ export default async function CaseStudyPage({
         <section style={{ padding: "52px 0 0", scrollMarginTop: 90 }}>
           {sectionHead("03", "data flow")}
           <h2 style={{ fontSize: "clamp(26px,3.4vw,32px)", marginBottom: 16 }}>{cs.dataFlow.heading}</h2>
-          <p style={bodyText}>{cs.dataFlow.body}</p>
+          <p className="prose" style={bodyText}>
+            {cs.dataFlow.body}
+          </p>
           <div
             style={{
               display: "flex",
@@ -373,6 +380,7 @@ export default async function CaseStudyPage({
             {cs.lessons.map((lesson) => (
               <li
                 key={lesson.slice(0, 24)}
+                className="prose"
                 style={{ fontSize: 16, lineHeight: 1.75, color: "color-mix(in srgb, var(--color-text) 82%, transparent)" }}
               >
                 {lesson}
