@@ -64,8 +64,10 @@
   --shadow-md: 0 0 0 1px #595d6c, 0 6px 18px rgba(0, 0, 0, 0.55);
   --shadow-lg: 0 0 0 1px #9397ab, 0 16px 40px rgba(0, 0, 0, 0.65);
 
-  /* Base transitions and easing (IMPLEMENTATION.md §1) */
-  --ease-out: cubic-bezier(0.22, 0.7, 0.2, 1);
+  /* Base transitions and easing (IMPLEMENTATION.md §1). The spec's summary
+     table lists .22,.7,.2,1, but the design source itself uses .23,1,.32,1
+     in all 114 of its transitions — the stronger curve wins. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-std: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-nav: cubic-bezier(0.32, 0.72, 0, 1);
 }
@@ -239,11 +241,15 @@ figcaption {
   width: 100%;
   margin-top: var(--space-2);
 }
-.btn-lift:hover {
-  transform: translateY(-2px);
-}
-.btn-lift:active {
+/* Every button confirms the press, not just the lifting ones — otherwise the
+   form submit, nav CTA and copy button feel dead under the finger. */
+.btn:active {
   transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-lift:hover {
+    transform: translateY(-2px);
+  }
 }
 
 /* — forms — */
@@ -325,12 +331,15 @@ textarea.input {
     transform 220ms var(--ease-out),
     box-shadow 220ms var(--ease-out);
 }
-.card-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-.card-lift-5:hover {
-  transform: translateY(-5px);
+/* Gated: on touch, :hover latches on tap and the card stays stuck lifted. */
+@media (hover: hover) and (pointer: fine) {
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .card-lift-5:hover {
+    transform: translateY(-5px);
+  }
 }
 
 /* — tags — */
@@ -557,11 +566,13 @@ textarea.input {
     border-color 160ms var(--ease-std),
     color 160ms var(--ease-std);
 }
-.icon-social:hover {
-  transform: translateY(-2px);
-  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
-  border-color: color-mix(in srgb, var(--color-accent) 70%, transparent);
-  color: var(--color-accent-300);
+@media (hover: hover) and (pointer: fine) {
+  .icon-social:hover {
+    transform: translateY(-2px);
+    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent) 70%, transparent);
+    color: var(--color-accent-300);
+  }
 }
 .icon-social:active {
   transform: translateY(0) scale(0.97);
@@ -628,8 +639,12 @@ textarea.input {
   padding-right: 14px;
   width: max-content;
 }
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
+/* Gated to match the design source, which checked the same media query in JS
+   before pausing — on touch a tap would otherwise freeze the row for good. */
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
 }
 .stack-chip {
   display: flex;
@@ -644,9 +659,11 @@ textarea.input {
     border-color 200ms var(--ease-out),
     transform 200ms var(--ease-out);
 }
-.stack-chip:hover {
-  border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .stack-chip:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+    transform: translateY(-2px);
+  }
 }
 
 /* Image slot placeholder (design's <image-slot> stand-in) */
@@ -703,9 +720,13 @@ textarea.input {
 .hero-portrait {
   display: none;
 }
+/* lg per the design spec: nav links replace the hamburger and the hero splits
+   two-up. The fixed 368px portrait column leaves the text ~428px here. */
 @media (min-width: 900px) {
   .hero-grid {
-    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    /* Text column stays flexible; portrait column sizes exactly to the
+       card's own fixed width instead of stretching to fill 1fr. */
+    grid-template-columns: minmax(320px, 1fr) auto;
   }
   .hero-portrait {
     display: flex;

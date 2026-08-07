@@ -49,6 +49,12 @@ function EducationJson() {
   );
 }
 
+// Standard ID-photo ratio, preserved exactly from the 540x694 source. Fixed at
+// every viewport — never fluid — but sized down so the hero copy stays the
+// primary read and the portrait supports it rather than competing with it.
+const PORTRAIT_W = 360;
+const PORTRAIT_H = Math.round((PORTRAIT_W * 694) / 540); // 463
+
 function PortraitCard() {
   const [flipped, setFlipped] = useState(false);
   const corner = (pos: React.CSSProperties) => (
@@ -68,12 +74,15 @@ function PortraitCard() {
       className="hero-portrait"
       style={{
         flexDirection: "column",
-        alignSelf: "start",
-        justifySelf: "stretch",
+        alignSelf: "center",
+        justifySelf: "end",
         position: "relative",
-        width: "100%",
-        height: "calc(100% - 70px)",
-        minHeight: 320,
+        // Fixed, non-responsive: the photo is a standard ID portrait and must
+        // render at its native 540x694 regardless of viewport. Only the text
+        // column flexes. +8px covers the frame's 1px border and 3px side
+        // padding on each side, so the photo itself lands on exactly 540.
+        width: PORTRAIT_W + 8,
+        flex: "none",
       }}
     >
       {corner({ top: -9, left: -9, borderTop: "1px solid var(--color-accent)", borderLeft: "1px solid var(--color-accent)" })}
@@ -109,7 +118,7 @@ function PortraitCard() {
             {flipped ? "education.json" : "portrait.jpg"}
           </span>
         </div>
-        <div style={{ position: "relative", flex: 1, minHeight: 280, perspective: 1400 }}>
+        <div style={{ position: "relative", height: PORTRAIT_H, flex: "none", perspective: 1400 }}>
           <div
             style={{
               position: "absolute",
@@ -132,16 +141,14 @@ function PortraitCard() {
             >
               <Image
                 src="/portrait.jpg"
-                width={540}
-                height={694}
+                width={PORTRAIT_W}
+                height={PORTRAIT_H}
                 alt="Joshua Klyne Pudadera"
                 priority
                 style={{
                   display: "block",
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "50% 16%",
+                  width: PORTRAIT_W,
+                  height: PORTRAIT_H,
                   borderRadius: "calc(var(--radius-lg) - 3px)",
                   filter: "saturate(0.94) contrast(1.02) brightness(0.97)",
                 }}
