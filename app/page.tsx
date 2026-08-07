@@ -7,6 +7,7 @@ import { ProjectGrid } from "@/components/ProjectGrid";
 import { Writing } from "@/components/Writing";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { ContactCTA } from "@/components/ContactCTA";
+import { RatePortfolio } from "@/components/RatePortfolio";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -44,8 +45,9 @@ export default function Home() {
         <Writing />
         <ExperienceTimeline />
         <ContactCTA />
-        <Analytics />
+        <RatePortfolio />
       </main>
+      <Analytics />
       <Footer />
     </div>
   );

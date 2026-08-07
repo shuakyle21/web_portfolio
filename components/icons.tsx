@@ -30,6 +30,19 @@ export function GlobeIcon({ size = 18 }: { size?: number }) {
   );
 }
 
+/**
+ * Solid star, always filled — the rating widget animates `color`, never the
+ * path. Swapping an outline path for a filled one would mean a DOM mutation
+ * on every pointer move and can't be expressed in CSS.
+ */
+export function StarIcon({ size = 26 }: { size?: number }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 1.8l3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 17.56l-6.18 3.25L7 13.93l-5-4.87 6.91-1L12 1.8Z" />
+    </svg>
+  );
+}
+
 /** Brand mark: rounded accent tile with a chevron-and-underscore prompt glyph. */
 export function BrandMark() {
   return (
