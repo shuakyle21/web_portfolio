@@ -83,7 +83,7 @@ export default async function CaseStudyPage({
       style={{
         background: "var(--color-bg)",
         color: "var(--color-text)",
-        minHeight: "100vh",
+        minHeight: "100dvh",
         fontFamily: "var(--font-body)",
       }}
     >

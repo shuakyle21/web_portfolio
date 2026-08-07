@@ -157,7 +157,9 @@ function ProjectCard({ item }: { item: Work }) {
       style={{ padding: 0, overflow: "hidden" }}
     >
       <CardVisual visual={item.visual} />
-      <div style={{ display: "flex", flexDirection: "column", gap: 11, padding: 20 }}>
+      {/* flex:1 lets this fill the stretched grid row, which is what gives the
+          CTA row below a gap to push against with margin-top:auto. */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 11, padding: 20, flex: 1 }}>
         <div
           style={{
             display: "flex",
@@ -173,7 +175,9 @@ function ProjectCard({ item }: { item: Work }) {
             {item.status}
           </span>
         </div>
-        <p className="card-body" style={{ fontSize: 14 }}>
+        {/* .card-body carries flex:1 globally; neutralise it here so the free
+            space collects at the CTA row instead of being eaten by the blurb. */}
+        <p className="card-body" style={{ fontSize: 14, flex: "none" }}>
           {item.blurb}
         </p>
         <p
@@ -201,7 +205,10 @@ function ProjectCard({ item }: { item: Work }) {
               flexWrap: "wrap",
               alignItems: "center",
               gap: 8,
-              marginTop: 6,
+              // auto, not 6px: pins the CTA to the card bottom so buttons line
+              // up across a row regardless of how long the blurb above is.
+              marginTop: "auto",
+              paddingTop: 6,
             }}
           >
             {item.links.map((link) =>

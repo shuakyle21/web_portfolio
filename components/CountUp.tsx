@@ -48,7 +48,10 @@ export function CountUp({
   }, [value, suffix, group]);
 
   return (
-    <span ref={ref} className={className} style={style}>
+    // tabular-nums is load-bearing, not cosmetic: proportional figures in the
+    // heading face swing ~27px across the values this counts through, so the
+    // number reflows and shoves its label sideways for the whole 900ms.
+    <span ref={ref} className={className} style={{ fontVariantNumeric: "tabular-nums", ...style }}>
       {fmt(value)}
     </span>
   );

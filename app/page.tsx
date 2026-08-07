@@ -17,7 +17,9 @@ export default function Home() {
       style={{
         background: "var(--color-bg)",
         color: "var(--color-text)",
-        minHeight: "100vh",
+        // dvh, not vh: iOS Safari counts the collapsing URL bar in vh, so the
+        // page height jumps on first scroll.
+        minHeight: "100dvh",
         fontFamily: "var(--font-body)",
         position: "relative",
         overflowX: "clip",
