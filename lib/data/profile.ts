@@ -27,14 +27,16 @@ export const profile = {
     { value: 4, suffix: "+", label: "Years of audit-ready records" },
     { value: 2918, group: true, label: "Rows reconciled, dengue dataset" },
     { value: 3, label: "Vocational programmes covered" },
-    { value: 1, label: "Peer-reviewed paper, first author" },
+    { value: 1, label: "Peer-reviewed paper, author out of four authors" },
   ],
   tools: [
-    { label: "Claude code", accent: true },
+    { label: "Claude code"},
     { label: "ChatGPT" },
-    { label: "Prompt engineering" },
-    { label: "Firecrawl" },
+    { label: "Prompt Engineering" },
     { label: "Microsoft Word" },
+    { label: "Microsoft Excel" },
+    { label: "Google Sheets" },
+    { label: "Looker Studio" },
   ],
   certifications: [
     "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
@@ -43,20 +45,18 @@ export const profile = {
     "Leveraging AI for Text Analysis: NLP Using Orange Data Mining",
   ],
   education: {
-    degree: "BS Computer Science",
-    college: "Engineering, Architecture and Computing",
+    degree: "Bachelor of Science in Computer Science",
+    college: "College of Engineering, Architecture and Computing",
     university: "Notre Dame of Marbel University",
     years: "2021 — 2025",
-    gpa: "1.67",
     leadership: {
       role: "President, PSITS — NDMU Chapter",
       term: "Jul 2023 — May 2024",
       note: "regional competitions — overall champion",
     },
     honors: [
-      "Best Student Research — CS, Data Science and Algorithms",
-      "NDMU 18th Araw ng Parangal",
+      "Best Student Research: CS, Data Science and Algorithms Category, NDMU 18th Araw ng Parangal"    
     ],
-    thesis: "Published — IJLTEMAS",
+    thesis: "Published @ IJLTEMAS",
   },
 };

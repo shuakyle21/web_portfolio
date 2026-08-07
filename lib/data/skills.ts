@@ -14,7 +14,7 @@ export const skills: SkillCategory[] = [
       "Google Sheets / Looker Studio",
       "Status & funnel reporting",
       "Recurring report cycles",
-      "Charts people can read",
+      "Charts and Dashboards",
     ],
   },
   {
@@ -23,13 +23,13 @@ export const skills: SkillCategory[] = [
     items: [
       "pandas / NumPy",
       "SQL",
-      "Cleaning & deduplication",
+      "Cleaning & Reshaping data",
       "matplotlib / seaborn",
       "scikit-learn",
       "Orange Data Mining",
       "Jupyter",
-      "Forecasting models",
-      "Geospatial data",
+      "Time series analysis",
+      "Geospatial analysis (QGIS, Google Earth)",
     ],
   },
   {
@@ -38,11 +38,13 @@ export const skills: SkillCategory[] = [
     items: [
       "Python",
       "REST endpoint design",
-      "Request validation",
+      "API validation",
       "Error handling",
       "Relational schema design",
       "Cloud integration",
-      "Working from written specs",
+      "FastAPI",
+      "PostgreSQL",
+      "MySQL",    
     ],
   },
   {
