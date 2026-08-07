@@ -8,7 +8,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    period: "Jun 2026 — present",
+    period: "Jun 2026 – present",
     role: "Backend AI Engineer — Intern",
     org: "FlyRank AI",
     bullets: [
@@ -19,8 +19,8 @@ export const experience: Experience[] = [
     tags: ["Specifications", "Documentation", "AI output review"],
   },
   {
-    period: "Nov 2021 — present",
-    role: "Data Entry Specialist · Processing Officer / Registrar · Compliance Officer",
+    period: "Nov 2021 – present",
+    role: "Data Entry Specialist, Processing Officer / Registrar, Compliance Officer",
     org: "Nenita Farm Rice-Based Farm Training Center",
     bullets: [
       "Build the Excel dashboards and status reports that track each batch across the EGACE stages: Enrolled, Graduated, Assessed, Certified, Employed, so programme staff can see where a cohort stands without opening the underlying records.",
@@ -39,7 +39,7 @@ export const experience: Experience[] = [
     ],
   },
   {
-    period: "Jan 2026 — Jun 2026",
+    period: "Jan 2026 – Jun 2026",
     role: "AI Content Producer & Technical Writer",
     org: "Freelance (Remote)",
     bullets: [
@@ -51,7 +51,7 @@ export const experience: Experience[] = [
     tags: ["Claude", "Firecrawl", "Medium", "Diagrams", "Apify"],
   },
   {
-    period: "Jun 2024 — Jul 2024",
+    period: "Jun 2024 – Jul 2024",
     role: "On-the-Job Trainee",
     org: "LEADSolutions INC, Koronadal City",
     bullets: [

@@ -48,10 +48,10 @@ export const profile = {
     degree: "Bachelor of Science in Computer Science",
     college: "College of Engineering, Architecture and Computing",
     university: "Notre Dame of Marbel University",
-    years: "2021 — 2025",
+    years: "2021–2025",
     leadership: {
       role: "President, PSITS — NDMU Chapter",
-      term: "Jul 2023 — May 2024",
+      term: "Jul 2023 – May 2024",
       note: "regional competitions — overall champion",
     },
     honors: [
