@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 import { z } from "zod";
 import { contactSchema } from "@/lib/contact-schema";
 
@@ -32,21 +33,19 @@ export async function POST(req: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
   if (apiKey && to) {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "Shua.dev contact <onboarding@resend.dev>",
-        to: [to],
-        reply_to: email,
-        subject: `Portfolio contact from ${name}`,
-        text: `From: ${name} <${email}>\n\n${message}`,
-      }),
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from: "Shua.dev contact <onboarding@resend.dev>",
+      to: [to],
+      replyTo: email,
+      subject: `Portfolio contact from ${name}`,
+      // Plain text, not html: name/email/message are visitor-submitted,
+      // and interpolating them into an HTML body would let a submission
+      // inject markup into the email that lands in your inbox.
+      text: `From: ${name} <${email}>\n\n${message}`,
     });
-    if (!res.ok) {
+    if (error) {
+      console.error("[contact] resend error", error);
       return NextResponse.json({ error: "Delivery failed" }, { status: 502 });
     }
     return NextResponse.json({ ok: true });
