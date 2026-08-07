@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono, Caveat } from "next/font/google";
 import { profile } from "@/lib/data/profile";
 import { links } from "@/lib/data/links";
 import "./globals.css";
+import { siteUrl } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const spaceGrotesk = Space_Grotesk({
@@ -24,7 +25,6 @@ const caveat = Caveat({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shua.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -43,7 +43,10 @@ export const metadata: Metadata = {
     "fact-checking",
     "verification",
   ],
-  openGraph: { type: "website", images: ["/og.png"] },
+  // No images key here on purpose: app/opengraph-image.tsx is a file-convention
+  // route, so Next emits og:image (and its dimensions) automatically. Setting it
+  // manually would override that with a path that has to be kept in sync by hand.
+  openGraph: { type: "website" },
   twitter: { card: "summary_large_image" },
   alternates: { canonical: siteUrl },
 };
