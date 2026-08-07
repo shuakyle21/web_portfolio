@@ -27,9 +27,6 @@ function EducationJson() {
       <div style={{ paddingLeft: 16 }}>{key("college")}: {val(edu.college)},</div>
       <div style={{ paddingLeft: 16 }}>{key("university")}: {val(edu.university)},</div>
       <div style={{ paddingLeft: 16 }}>{key("years")}: {val(edu.years)},</div>
-      <div style={{ paddingLeft: 16 }}>
-        {key("gpa")}: <span style={{ color: "var(--color-accent)" }}>{edu.gpa}</span>,
-      </div>
       <div style={{ paddingLeft: 16 }}>{key("leadership")}: {"{"}</div>
       <div style={{ paddingLeft: 32 }}>{key("role")}: {val(edu.leadership.role)},</div>
       <div style={{ paddingLeft: 32 }}>{key("term")}: {val(edu.leadership.term)},</div>
