@@ -8,6 +8,7 @@ import { Writing } from "@/components/Writing";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
   return (
@@ -43,6 +44,7 @@ export default function Home() {
         <Writing />
         <ExperienceTimeline />
         <ContactCTA />
+        <Analytics />
       </main>
       <Footer />
     </div>
