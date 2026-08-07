@@ -110,7 +110,8 @@ function TerminalVisual() {
 
 function CardVisual({ visual }: { visual: Work["visual"] }) {
   switch (visual.kind) {
-    case "image":
+    case "image": {
+      const fit = visual.fit ?? "cover";
       return (
         <div style={{ width: "100%", background: "color-mix(in srgb, var(--color-text) 4%, transparent)" }}>
           <Image
@@ -123,12 +124,13 @@ function CardVisual({ visual }: { visual: Work["visual"] }) {
               width: "100%",
               height: "auto",
               aspectRatio: "16/9",
-              objectFit: "cover",
+              objectFit: fit,
               filter: "saturate(0.92) contrast(1.03) brightness(0.94)",
             }}
           />
         </div>
       );
+    }
     case "slot":
       return (
         <div style={{ width: "100%", background: "color-mix(in srgb, var(--color-text) 4%, transparent)" }}>
@@ -259,7 +261,7 @@ export function ProjectGrid() {
       <Reveal style={{ fontSize: "clamp(28px,3.6vw,34px)", marginBottom: 8 }}>
         Projects
       </Reveal>
-      <p className="text-muted" style={{ maxWidth: "54ch", marginBottom: 34 }}>
+      <p className="text-muted prose" style={{ maxWidth: "54ch", marginBottom: 34 }}>
         Eight projects, with what each one actually produced.
       </p>
       <div

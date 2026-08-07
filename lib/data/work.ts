@@ -39,7 +39,16 @@ export type Work = {
   tags: string[];
   links: { label: string; href: string; kind?: "primary" | "secondary" | "github" }[];
   visual:
-    | { kind: "image"; src: string; alt: string; width: number; height: number }
+    // `fit` defaults to "cover". Use "contain" when the source aspect is far
+    // from the card's 16:9 and cropping would cut meaningful content.
+    | {
+        kind: "image";
+        src: string;
+        alt: string;
+        width: number;
+        height: number;
+        fit?: "cover" | "contain";
+      }
     | { kind: "slot"; slotId: string; placeholder: string }
     | { kind: "yaml" }
     | { kind: "terminal" };
@@ -58,9 +67,14 @@ export const work: Work[] = [
     tags: ["Excel", "Lookups", "Charting", "Status reporting"],
     links: [],
     visual: {
-      kind: "slot",
-      slotId: "work-egace",
-      placeholder: "EGACE dashboard screenshot (names redacted)",
+      kind: "image",
+      src: "/egace-dashboard.png",
+      alt: "EGACE report dashboard: 15 trainees enrolled, 14 graduates (93.3% completion), 12 assessed, 12 certified (100% pass rate), and an 86.7% employment rate, with a training funnel bar chart and an employment status pie chart",
+      width: 2130,
+      height: 812,
+      // 2.62:1 source in a 16:9 slot — cover would crop ~16% off each side,
+      // cutting the Enrollment tile and the pie legend. Letterbox instead.
+      fit: "contain",
     },
   },
   {
