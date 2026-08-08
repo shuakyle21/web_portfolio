@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono, Caveat } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { profile } from "@/lib/data/profile";
 import { links } from "@/lib/data/links";
 import "./globals.css";
@@ -85,6 +86,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
