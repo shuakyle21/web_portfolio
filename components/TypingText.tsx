@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 
 /**
- * TypingText equivalent: types each role, holds, deletes, moves on. Loops.
- * The full role list lives in visually-hidden text for assistive tech;
- * the animated line is aria-hidden.
+ * Types the primary role once and holds — no delete, no cycling. A rotating
+ * version left the line mid-transition more often than not on a quick
+ * glance, which is the one glance a resume screen actually gets. The full
+ * role list still lives in visually-hidden text for assistive tech.
  */
 export function TypingText({
   words,
@@ -15,42 +16,24 @@ export function TypingText({
   speedMs?: number;
 }) {
   const [typed, setTyped] = useState("");
+  const word = words[0];
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let ri = 0;
-    let ci = 0;
-    let deleting = false;
-    let t: ReturnType<typeof setTimeout>;
     if (reduced) {
-      t = setTimeout(() => setTyped(words[0]), 0);
-      return () => clearTimeout(t);
+      setTyped(word);
+      return;
     }
+    let ci = 0;
+    let t: ReturnType<typeof setTimeout>;
     const tick = () => {
-      const word = words[ri % words.length];
-      let delay: number;
-      if (!deleting) {
-        ci += 1;
-        setTyped(word.slice(0, ci));
-        delay = speedMs;
-        if (ci >= word.length) {
-          deleting = true;
-          delay = 1600;
-        }
-      } else if (ci > 0) {
-        ci -= 1;
-        setTyped(word.slice(0, ci));
-        delay = Math.max(18, speedMs * 0.45);
-      } else {
-        deleting = false;
-        ri = (ri + 1) % words.length;
-        delay = 280;
-      }
-      t = setTimeout(tick, delay);
+      ci += 1;
+      setTyped(word.slice(0, ci));
+      if (ci < word.length) t = setTimeout(tick, speedMs);
     };
     t = setTimeout(tick, speedMs);
     return () => clearTimeout(t);
-  }, [words, speedMs]);
+  }, [word, speedMs]);
 
   return (
     <>
