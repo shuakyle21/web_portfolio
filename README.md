@@ -1,54 +1,103 @@
 # Shua.dev — portfolio
 
-Joshua Klyne P. Pudadera's portfolio: research, verification and technical writing.
-Built with **Next.js (App Router) + TypeScript + Tailwind**, implementing the
-Claude Design project "Claude Code portfolio website" (Nocturne design system).
-The visual source of truth lives in [`design-reference/`](design-reference/) —
-`Portfolio.dc.html`, `Case Study.dc.html`, and the Nocturne tokens.
+**Live at [shua-kyle.me](https://shua-kyle.me)**
 
-## Develop
+The personal site of **Joshua Klyne P. Pudadera** — data specialist, backend AI
+intern, and published first-author researcher, working out of Banga, South
+Cotabato, Philippines.
+
+This repository is the site itself. It exists to do one thing well: show the
+work in enough detail that someone can check it. Every project card names a
+concrete outcome rather than a technology list, the research is linked to the
+published paper, and the one piece of work that deserves the full story — the
+dengue forecasting dataset — gets a long-form case study of its own instead of a
+paragraph.
+
+## What's in the site
+
+**The published research.** A peer-reviewed paper, first author of four:
+
+> **Improving Prediction of Dengue Outbreaks Using Attention-based LSTM Model
+> with Honey Badger Optimization for Hyperparameter Tuning**  
+> Pudadera, Sombero, Dollaga, Sueno · *IJLTEMAS* Vol. XV, Issue VI (2026),
+> pp. 2621–2632 · DOI [10.51583/IJLTEMAS.2026.150600192](https://doi.org/10.51583/IJLTEMAS.2026.150600192)
+>
+> Combines an attention-based LSTM with the Honey Badger Algorithm for
+> hyperparameter tuning, trained on disease, climate and geographic data for
+> Koronadal, South Cotabato spanning 2015–2024. The tuned model cuts Mean
+> Squared Error by 43.7% against a standard LSTM while reducing overfitting.
+>
+> 📄 [Read the paper on IJLTEMAS](https://www.ijltemas.in/submission/online/article/view/5359)
+
+**The case study behind it.** `/work/dengue-forecasting` walks through how the
+dataset was actually built: 2,918 rows × 19 columns reconciled from three
+incompatible source types — DOH-CHD case records, Google Earth Engine rasters
+and NAMRIA shapefiles — including the decisions that shaped it (monthly rather
+than weekly resolution, completeness checked before modelling) and the results
+that didn't land, like the remaining underprediction of extreme spikes.
+
+**The other work**, each with the outcome stated up front:
+
+| Project | What it produced |
+| --- | --- |
+| EGACE status dashboard | One place to see where a training batch stands, instead of five separate counts |
+| TESDA scholarship records | Three vocational programmes kept audit-ready, four years running |
+| Agentic CI/CD workflow | Triggers, least privilege, secrets and a human review gate |
+| `linear-git-skills` | Read-only against Linear, so a two-way sync can't produce duplicate issues |
+| AI research & verification pipeline | Ran on every article, keeping each claim traceable |
+| `medium-draft` Claude skill | Removed the reformatting step entirely |
+| Transaction tracking mobile app | UI/UX through to cloud integration, built during an internship |
+
+Alongside these: a background section, a skills cloud, an experience timeline, a
+contact form and a small "rate this portfolio" widget.
+
+## How it's built
+
+A **Next.js 16** App Router site — React 19, TypeScript, Tailwind v4 — deployed
+on Vercel. The case-study route is fully static; two small API routes handle the
+contact form and the rating widget, each validating with a zod schema shared
+verbatim with the client.
+
+Everything editable lives in `lib/data/` (`profile.ts`, `work.ts`, `skills.ts`,
+`experience.ts`, `links.ts`), so updating the site means editing facts, not
+markup. The visual design is the Nocturne system, implemented from the Claude
+Design project kept in [`design-reference/`](design-reference/) — build notes in
+[`IMPLEMENTATION.md`](design-reference/IMPLEMENTATION.md).
+
+Motion is deliberate: scroll-triggered effects fire once, and everything sits
+behind `prefers-reduced-motion` — marquees become plain scrollers, counters and
+reveals render their final state.
+
+## Running it locally
+
+Requires **Node ≥ 20.9**.
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Structure
+Then `npm run build` / `npm run start` for a production build, `npm run lint`
+for ESLint.
 
-- `app/` — layout (fonts, metadata, JSON-LD), home page, `/work/[slug]` case-study
-  route, `/api/contact` form handler, `sitemap.ts`, `robots.ts`
-- `components/` — one component per section (`Nav`, `Hero`, `About`, `SkillsCloud`,
-  `StackMarquee`, `ProjectGrid`, `Writing`, `ExperienceTimeline`, `ContactCTA`,
-  `Footer`) plus the animation primitives (`TypingText`, `CountUp`, `Reveal`,
-  `HighlightSweep`, `CopyEmailButton`)
-- `lib/data/` — every editable fact: `profile.ts`, `skills.ts`, `work.ts`
-  (incl. the dengue case-study object), `experience.ts`, `links.ts`
-- `app/globals.css` — the Nocturne token system, component classes, keyframes and
-  the three easing curves (`--ease-out`, `--ease-std`, `--ease-nav`)
+Four environment variables, all optional in development (`.env*` is gitignored).
+Without the mail ones, form submissions are simply logged, so local iteration
+can never email anyone.
 
-All scroll-triggered effects fire once and everything sits behind
-`prefers-reduced-motion` (marquees become plain scrollers, counters and reveals
-render final state).
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin. Falls back to `https://shua-kyle.me`. |
+| `RESEND_API_KEY` | Resend credential, shared by both mail routes. |
+| `CONTACT_TO_EMAIL` | Recipient for contact-form submissions. |
+| `RATING_TO_EMAIL` | Recipient for portfolio ratings — deliberately with no fallback to `CONTACT_TO_EMAIL`, so unsetting it in production kills ratings while leaving contact working. |
 
-## Contact form
+## Still to come
 
-`/api/contact` validates with the same zod schema as the client, has a honeypot
-and a submit-speed check. Set `RESEND_API_KEY` and `CONTACT_TO_EMAIL` to deliver
-via Resend; without them, submissions are accepted and logged (dev mode).
+Placeholders render as labelled boxes, so the layout holds until the real asset
+lands.
 
-## Deploy
-
-- **Vercel** (recommended): push the repo and import it — the API route, sitemap
-  and SSG case study all work as-is. Env vars: `NEXT_PUBLIC_SITE_URL`,
-  `RESEND_API_KEY`, `CONTACT_TO_EMAIL`.
-- **GitHub Pages**: possible via `output: "export"` in `next.config.ts`, but the
-  `/api/contact` route must be dropped — point the form at a form service
-  (Formspree etc.) instead.
-
-## Content still needed (from IMPLEMENTATION.md §12)
-
-- Real screenshots for the EGACE, pipeline, medium-draft and TESDA work cards,
-  and the case-study figure slots (`components/ImageSlot.tsx` placeholders).
-- Individual Medium article titles/URLs for the Writing section.
-- A public repo URL for the dengue dataset, if one exists.
-- An `/og.png` social share image.
+- Screenshots for the research pipeline, `medium-draft` and TESDA records cards.
+- Four dengue case-study figures: the data-flow diagram, the study area map, the
+  2015–2024 monthly case series, and predicted-vs-actual.
+- A public repository for the dengue dataset, if one is released — the card
+  currently links to the paper and the case study only.
