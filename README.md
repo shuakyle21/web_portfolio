@@ -1,4 +1,13 @@
-# Shua.dev — portfolio
+# Shua.dev — portfolio 
+
+<a href="https://websitelaunches.com/site/shua-kyle.me" target="_blank" rel="noopener">
+  <img
+    src="https://websitelaunches.com/badge/shua-kyle.me.svg"
+    alt="Established online - Public launch record"
+    width="255"
+    height="55"
+  >
+</a>
 
 Joshua Klyne P. Pudadera's portfolio: research, verification and technical writing.
 Built with **Next.js (App Router) + TypeScript + Tailwind**, implementing the
