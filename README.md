@@ -76,37 +76,3 @@ Design project kept in [`design-reference/`](design-reference/) — build notes 
 Motion is deliberate: scroll-triggered effects fire once, and everything sits
 behind `prefers-reduced-motion` — marquees become plain scrollers, counters and
 reveals render their final state.
-
-## Running it locally
-
-Requires **Node ≥ 20.9**.
-
-```bash
-npm install
-npm run dev
-```
-
-Then `npm run build` / `npm run start` for a production build, `npm run lint`
-for ESLint.
-
-Four environment variables, all optional in development (`.env*` is gitignored).
-Without the mail ones, form submissions are simply logged, so local iteration
-can never email anyone.
-
-| Variable | Purpose |
-| --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin. Falls back to `https://shua-kyle.me`. |
-| `RESEND_API_KEY` | Resend credential, shared by both mail routes. |
-| `CONTACT_TO_EMAIL` | Recipient for contact-form submissions. |
-| `RATING_TO_EMAIL` | Recipient for portfolio ratings — deliberately with no fallback to `CONTACT_TO_EMAIL`, so unsetting it in production kills ratings while leaving contact working. |
-
-## Still to come
-
-Placeholders render as labelled boxes, so the layout holds until the real asset
-lands.
-
-- Screenshots for the research pipeline, `medium-draft` and TESDA records cards.
-- Four dengue case-study figures: the data-flow diagram, the study area map, the
-  2015–2024 monthly case series, and predicted-vs-actual.
-- A public repository for the dengue dataset, if one is released — the card
-  currently links to the paper and the case study only.
