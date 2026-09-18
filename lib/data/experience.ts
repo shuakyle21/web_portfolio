@@ -56,7 +56,7 @@ export const experience: Experience[] = [
     org: "LEADSolutions INC, Koronadal City",
     bullets: [
       "Developed a mobile application for transaction tracking in Flutter and Dart with Android Studio.",
-      "Integrated it with the company's existing web system hosted on Azure Cloud for seamless data exchange.",
+      "Integrated it with the company's existing web system on Azure Cloud so data moved between the two without manual re-entry.",
       "Designed the UI/UX so navigation and functionality stayed intuitive for the people entering transactions daily.",
     ],
     tags: ["Flutter / Dart", "Android Studio", "Azure Cloud", "UI/UX"],
