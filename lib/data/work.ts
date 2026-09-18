@@ -336,9 +336,14 @@ export const work: Work[] = [
       },
     ],
     visual: {
-      kind: "slot",
-      slotId: "work-gmail-automation",
-      placeholder: "n8n workflow diagram: Gmail labels to Sheets and Drive",
+      kind: "image",
+      src: "/gmail-sheets-drive-automation.png",
+      alt: "n8n workflow diagram: Gmail labels polled on a schedule, routed through metadata extraction and attachment detection, into Google Drive archiving and a Google Sheets log",
+      width: 3082,
+      height: 798,
+      // 3.86:1 source in a 16:9 slot — cover would crop most of the node
+      // graph off each side. Letterbox instead.
+      fit: "contain",
     },
   },
   {
@@ -358,9 +363,14 @@ export const work: Work[] = [
       },
     ],
     visual: {
-      kind: "slot",
-      slotId: "work-telegram-receipts",
-      placeholder: "n8n workflow diagram: Telegram receipt photos to Sheets and Drive",
+      kind: "image",
+      src: "/telegram-receipt-automation.png",
+      alt: "n8n workflow diagram: a Telegram receipt photo routed through Google Gemini Vision extraction, into Google Drive archiving and a Google Sheets log with a Drive link",
+      width: 1716,
+      height: 401,
+      // 4.28:1 source in a 16:9 slot — cover would crop most of the node
+      // graph off each side. Letterbox instead.
+      fit: "contain",
     },
   },
   {
