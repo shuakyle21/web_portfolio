@@ -269,7 +269,7 @@ export function ProjectGrid() {
         Projects
       </Reveal>
       <p className="text-muted prose" style={{ maxWidth: "54ch", marginBottom: 34 }}>
-        Eight projects, with what each one actually produced.
+        Ten projects, with what each one actually produced.
       </p>
       <div
         style={{

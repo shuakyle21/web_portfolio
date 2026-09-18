@@ -320,6 +320,60 @@ export const work: Work[] = [
     },
   },
   {
+    slug: "gmail-sheets-drive-automation",
+    title: "Multi-label Gmail → Sheets & Drive automation",
+    status: "Workflow",
+    statusStyle: "accent",
+    blurb:
+      "An n8n workflow that polls Gmail every 30 minutes for messages under monitored labels, extracts the metadata, detects attachments, and archives them into a Google Drive hierarchy keyed by label/date/sender while logging one row per email to Google Sheets. Now running on a self-hosted n8n instance, deployed via Docker on a VPS.",
+    outcome: "Duplicate-folder prevention and a read-mark step, so re-runs stay idempotent.",
+    tags: ["n8n", "Gmail API", "Google Sheets", "Google Drive", "Docker", "Self-hosted"],
+    links: [
+      {
+        label: "View repository",
+        href: "https://github.com/shuakyle21/-multi-label_gmail_to_google_sheets_-_drive_automation",
+        kind: "github",
+      },
+    ],
+    visual: {
+      kind: "image",
+      src: "/gmail-sheets-drive-automation.png",
+      alt: "n8n workflow diagram: Gmail labels polled on a schedule, routed through metadata extraction and attachment detection, into Google Drive archiving and a Google Sheets log",
+      width: 3082,
+      height: 798,
+      // 3.86:1 source in a 16:9 slot — cover would crop most of the node
+      // graph off each side. Letterbox instead.
+      fit: "contain",
+    },
+  },
+  {
+    slug: "telegram-receipt-automation",
+    title: "Telegram receipt photo processing automation",
+    status: "Workflow",
+    statusStyle: "accent",
+    blurb:
+      "An n8n workflow that takes receipt photos sent through Telegram, runs them through Google Gemini Vision with a receipt-specific prompt to extract merchant, amount and date, archives the original photo to Google Drive by submission date, and logs the extraction with a direct Drive link in Google Sheets. Runs on the same self-hosted n8n instance, deployed via Docker on a VPS.",
+    outcome: "A photo in Telegram becomes a logged, linked Sheets row with no manual entry.",
+    tags: ["n8n", "Telegram Bot API", "Google Gemini", "Google Sheets", "Docker", "Self-hosted"],
+    links: [
+      {
+        label: "View repository",
+        href: "https://github.com/shuakyle21/telegram-receipt-photo-processing-automation",
+        kind: "github",
+      },
+    ],
+    visual: {
+      kind: "image",
+      src: "/telegram-receipt-automation.png",
+      alt: "n8n workflow diagram: a Telegram receipt photo routed through Google Gemini Vision extraction, into Google Drive archiving and a Google Sheets log with a Drive link",
+      width: 1716,
+      height: 401,
+      // 4.28:1 source in a 16:9 slot — cover would crop most of the node
+      // graph off each side. Letterbox instead.
+      fit: "contain",
+    },
+  },
+  {
     slug: "tesda-records",
     title: "TESDA scholarship records, end to end",
     status: "Ongoing",
