@@ -723,30 +723,42 @@ textarea.input {
     filter 620ms ease;
 }
 
-/* Card fan. Cards are absolutely stacked on one another; CardFanCarousel sets
+/* Card fan. With scripts off this is an ordinary grid: the fan is an
+   enhancement, not the layout, so every card stays visible, in flow and
+   reachable. CardFanCarousel adds [data-ready] once GSAP is in charge, and sets
    --fan-card-w and the container height from measurement, so the fan follows
    viewport width and height instead of any hard-coded card size. */
 .fan-layout {
-  position: relative;
-  width: 100%;
-  /* Holds the space before JS measures, so the section never collapses. */
-  min-height: 420px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
   --fan-card-w: 260px;
 }
 
-.fan-layout:focus-visible {
+.fan-layout[data-ready] {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.fan-layout[data-ready]:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 4px;
   border-radius: var(--radius-md);
 }
 
 .fan-card {
+  /* Containing block for the optional whole-card link in the no-JS grid. */
+  position: relative;
+}
+
+.fan-layout[data-ready] .fan-card {
   position: absolute;
-  top: 36px; /* TOP in CardFanCarousel: headroom for the hover lift */
+  top: 36px; /* TOP in lib/fan-layout.ts: headroom for the hover lift */
   left: 50%;
   width: var(--fan-card-w);
-  /* Centred with a margin rather than a transform, so the first paint before
-     JS runs is in the right place and GSAP owns transform outright. */
+  /* Centred with a margin rather than a transform, so GSAP owns transform
+     outright and the card is in place on the frame before the first tween. */
   margin-left: calc(var(--fan-card-w) / -2);
   /* Pivot at the bottom, like cards held in a hand, so the tilt splays rather
      than swings the whole card sideways. */
@@ -754,11 +766,17 @@ textarea.input {
   will-change: transform, opacity;
 }
 
-/* Whole-card link, used only where a card has no call-to-action of its own: it
-   sits under the content so any inner buttons keep their own clicks. */
+/* Whole-card link, for a card with no call-to-action of its own. It covers the
+   card so the whole face clicks, which also means anything interactive inside
+   has to be lifted over it, or the link swallows those clicks. */
 .fan-stretched {
   position: absolute;
   inset: 0;
+}
+
+.fan-card :is(a, button):not(.fan-stretched) {
+  position: relative;
+  z-index: 1;
 }
 
 .fan-controls {
