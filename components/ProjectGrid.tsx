@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { work, type Work } from "@/lib/data/work";
+import { CardFanCarousel } from "./CardFanCarousel";
 import { ImageSlot } from "./ImageSlot";
-import { ProjectStrip } from "./ProjectStrip";
 import { Reveal } from "./Reveal";
 import { GitHubIcon } from "./icons";
 
@@ -154,7 +154,10 @@ function statusTagClass(style: Work["statusStyle"]) {
 function ProjectCard({ item }: { item: Work }) {
   return (
     <article
-      className="card elev-sm card-lift card-lift-5"
+      // No card-lift here: the fan already lifts and opens a card on hover, and
+      // a second CSS lift on a child would stack with it. The fan moves the
+      // wrapper, the card must not also transition its own transform.
+      className="card elev-sm"
       style={{ padding: 0, overflow: "hidden" }}
     >
       <CardVisual visual={item.visual} />
@@ -263,14 +266,6 @@ function ProjectCard({ item }: { item: Work }) {
 }
 
 export function ProjectGrid() {
-  // Six, not four: the grid resolves to 3 columns at this container width and
-  // 2 at tablet widths, and 6 is the only count that divides evenly by 1, 2 and
-  // 3 — any other number leaves a lone card on the last row. (Widening the
-  // container past ~1260px would add a 4th column and break that; change this
-  // to 8 if the max-width ever grows.)
-  const featured = work.slice(0, 6);
-  const rest = work.slice(6);
-
   return (
     <section id="work" style={{ padding: "112px 0 0", scrollMarginTop: 90 }}>
       <h6 className="section-kicker">$ ls ./projects</h6>
@@ -280,24 +275,15 @@ export function ProjectGrid() {
       <p className="text-muted prose" style={{ maxWidth: "54ch", marginBottom: 34 }}>
         {work.length} projects, with what each one actually produced.
       </p>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-          gap: 20,
-        }}
-      >
-        {featured.map((item) => (
+      {/* Every card is server-rendered and only moved by the fan, so the titles,
+          blurbs, tags and links below stay in the document. Cards carry their
+          own call-to-action, so no `linkUrl` is passed — a whole-card link would
+          fight those buttons for the click. */}
+      <CardFanCarousel cards={work.map((item) => ({ title: item.title }))}>
+        {work.map((item) => (
           <ProjectCard key={item.slug} item={item} />
         ))}
-      </div>
-      {rest.length > 0 && (
-        <ProjectStrip>
-          {rest.map((item) => (
-            <ProjectCard key={item.slug} item={item} />
-          ))}
-        </ProjectStrip>
-      )}
+      </CardFanCarousel>
     </section>
   );
 }
