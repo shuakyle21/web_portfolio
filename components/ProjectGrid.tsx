@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { work, type Work } from "@/lib/data/work";
 import { ImageSlot } from "./ImageSlot";
+import { ProjectStrip } from "./ProjectStrip";
 import { Reveal } from "./Reveal";
 import { GitHubIcon } from "./icons";
 
@@ -262,6 +263,14 @@ function ProjectCard({ item }: { item: Work }) {
 }
 
 export function ProjectGrid() {
+  // Six, not four: the grid resolves to 3 columns at this container width and
+  // 2 at tablet widths, and 6 is the only count that divides evenly by 1, 2 and
+  // 3 — any other number leaves a lone card on the last row. (Widening the
+  // container past ~1260px would add a 4th column and break that; change this
+  // to 8 if the max-width ever grows.)
+  const featured = work.slice(0, 6);
+  const rest = work.slice(6);
+
   return (
     <section id="work" style={{ padding: "112px 0 0", scrollMarginTop: 90 }}>
       <h6 className="section-kicker">$ ls ./projects</h6>
@@ -269,7 +278,7 @@ export function ProjectGrid() {
         Projects
       </Reveal>
       <p className="text-muted prose" style={{ maxWidth: "54ch", marginBottom: 34 }}>
-        Eight projects, with what each one actually produced.
+        {work.length} projects, with what each one actually produced.
       </p>
       <div
         style={{
@@ -278,10 +287,17 @@ export function ProjectGrid() {
           gap: 20,
         }}
       >
-        {work.map((item) => (
+        {featured.map((item) => (
           <ProjectCard key={item.slug} item={item} />
         ))}
       </div>
+      {rest.length > 0 && (
+        <ProjectStrip>
+          {rest.map((item) => (
+            <ProjectCard key={item.slug} item={item} />
+          ))}
+        </ProjectStrip>
+      )}
     </section>
   );
 }

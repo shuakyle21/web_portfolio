@@ -609,7 +609,6 @@ textarea.input {
   font-size: 13px;
   text-decoration: none;
   box-shadow: var(--shadow-md);
-  transition: top 160ms var(--ease-std);
 }
 .skip-link:focus-visible {
   top: 12px;
@@ -722,6 +721,51 @@ textarea.input {
     opacity 620ms var(--ease-out),
     transform 620ms var(--ease-out),
     filter 620ms ease;
+}
+
+/* Projects: the strip below the featured grid. Cards snap, and ProjectStrip
+   sets the mask inline so a fade only shows on an edge that hides cards. */
+.project-strip {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity; /* mandatory fights a mouse wheel */
+  scroll-padding-inline: 2px;
+  padding-bottom: 6px;
+  /* Restyled, not hidden: an invisible scrollbar is how a carousel goes
+     undiscovered on a mouse. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-divider) transparent;
+}
+
+.project-strip > * {
+  /* 30%, not 33%: three cards plus the gaps leave a sliver of the fourth
+     showing. Under 100% on purpose — the peek past the fade is what signals
+     that the row scrolls. A third of the row with no peek reads as a static
+     row that happens to be cut off. */
+  flex: 0 0 clamp(280px, 30%, 380px);
+  scroll-snap-align: start;
+}
+
+.project-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.project-strip::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-strip::-webkit-scrollbar-thumb {
+  background: var(--color-divider);
+  border-radius: 999px;
+}
+
+.project-strip:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
 }
 
 /* Marquee rows */
