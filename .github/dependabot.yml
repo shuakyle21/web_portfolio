@@ -1,0 +1,13 @@
+# Weekly dependency-update PRs. This is the control that would have emailed
+# about the Next.js Image Optimization SSRF (GHSA-cjq9-62q9-8jv4) while it sat
+# in the lockfile — nothing else in the repo watches for new advisories.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

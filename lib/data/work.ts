@@ -149,7 +149,7 @@ export const work: Work[] = [
         "NAMRIA shapefiles",
         "Forecasting",
       ],
-      citation: "IJLTEMAS Vol. XV Issue VI · DOI: 10.51583/IJLTEMAS.2026.150600192",
+      citation: "IJLTEMAS Vol. XV Issue VI, pp. 2621–2632 · DOI: 10.51583/IJLTEMAS.2026.150600192",
       hero: {
         slotId: "cs-hero",
         aspect: "16/9",
@@ -333,6 +333,51 @@ export const work: Work[] = [
       kind: "slot",
       slotId: "work-records",
       placeholder: "Records or compliance documentation (redacted)",
+    },
+  },
+  {
+    slug: "nenita-pos",
+    title: "Point-of-sale for a working lechon house",
+    status: "Tooling",
+    statusStyle: "accent",
+    blurb:
+      "Order-to-receipt POS built for Nenita Farm Lechon Haus and Catering Services — React 19 on Vite, Supabase behind row-level security policies, sales trends charted with Recharts, and receipts, daily reconciliation and payroll reports generated as PDFs in-app.",
+    outcome:
+      "Covers the shop floor end to end: orders, bookings, GCash payments, Senior/PWD discounts, payroll and an offline paper-POS import.",
+    tags: ["React 19", "Vite", "Supabase", "PostgreSQL RLS", "PDF reporting"],
+    links: [
+      {
+        label: "Source",
+        href: "https://github.com/shuakyle21/nenitafarm-lechonhaus",
+        kind: "github",
+      },
+    ],
+    visual: {
+      kind: "slot",
+      slotId: "work-nenita-pos",
+      placeholder: "POS dashboard or receipt screenshot",
+    },
+  },
+  {
+    slug: "jdvp-enrollment-dashboard",
+    title: "JDVP enrollment dashboard",
+    status: "Dashboard",
+    statusStyle: "accent",
+    blurb:
+      "A Looker Studio dashboard consolidating JDVP enrollment reports for participating schools: total enrollment, learner demographics, barangay-level distribution, client classifications and training status in one live view.",
+    outcome: "Enrollment across participating schools read from one dashboard.",
+    tags: ["Looker Studio", "Enrollment reporting", "Demographics"],
+    links: [
+      {
+        label: "Live dashboard",
+        href: "https://datastudio.google.com/reporting/b8c0030c-04c4-471f-837c-1e0778532267",
+        kind: "primary",
+      },
+    ],
+    visual: {
+      kind: "slot",
+      slotId: "work-jdvp",
+      placeholder: "JDVP dashboard screenshot",
     },
   },
 ];

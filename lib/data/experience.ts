@@ -52,14 +52,15 @@ export const experience: Experience[] = [
   },
   {
     period: "Jun 2024 – Jul 2024",
-    role: "On-the-Job Trainee",
-    org: "LEADSolutions INC, Koronadal City",
+    role: "Mobile Application Developer & UI/UX Designer Lead",
+    org: "LEADSolutions INC, Koronadal City (Internship)",
     bullets: [
-      "Developed a mobile application for transaction tracking in Flutter and Dart with Android Studio.",
-      "Integrated it with the company's existing web system hosted on Azure Cloud for seamless data exchange.",
+      "Built a cross-platform Financial Ledger app in Flutter/Dart over PHP/MySQL, with modules for tracking and approving receivable, payable, debit and credit accounts.",
+      "Diagnosed a database collation and version-compatibility issue by tracing inconsistent results across affected tables with SQL queries.",
+      "Integrated Azure Database for PostgreSQL into the existing LAMP-stack environment.",
       "Designed the UI/UX so navigation and functionality stayed intuitive for the people entering transactions daily.",
     ],
-    tags: ["Flutter / Dart", "Android Studio", "Azure Cloud", "UI/UX"],
+    tags: ["Flutter / Dart", "PHP / MySQL", "SQL debugging", "Azure Database for PostgreSQL", "UI/UX"],
   },
 ];
 

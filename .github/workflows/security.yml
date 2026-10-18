@@ -1,0 +1,33 @@
+name: security
+
+# Vulnerability and secret scanning. `npm audit --omit=dev` is the gate that
+# matters: it checks exactly what ships, so a vulnerable dev-only toolchain
+# (currently eslint-config-next's chain) cannot fail the build.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 3 * * 1" # Mondays 03:00 UTC — catches advisories with no new commit
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # gitleaks scans history, not just the diff
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
