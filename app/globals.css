@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* ── shadcn/ui theme bridge ──
+   Components in components/ui/ speak shadcn's token names (bg-card,
+   text-primary, text-muted-foreground). Mapping those names onto the Nocturne
+   palette below keeps a pasted shadcn component on the site's colours, instead
+   of it needing a second theme block to live beside them. */
+@theme {
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-text);
+  --color-primary: var(--color-accent);
+  --color-muted-foreground: var(--color-neutral-500);
+  /* Mirrors the Nocturne easing further down, so a Tailwind component's
+     `ease-out` is the same curve as every other transition on the site. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 /* ── Nocturne design system tokens (ported from design-reference/_ds/…/styles.css) ── */
 :root {
   --color-bg: #161826;
@@ -721,101 +736,6 @@ textarea.input {
     opacity 620ms var(--ease-out),
     transform 620ms var(--ease-out),
     filter 620ms ease;
-}
-
-/* Card fan. With scripts off this is an ordinary grid: the fan is an
-   enhancement, not the layout, so every card stays visible, in flow and
-   reachable. CardFanCarousel adds [data-ready] once GSAP is in charge, and sets
-   --fan-card-w and the container height from measurement, so the fan follows
-   viewport width and height instead of any hard-coded card size. */
-.fan-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  --fan-card-w: 260px;
-}
-
-.fan-layout[data-ready] {
-  display: block;
-  position: relative;
-  width: 100%;
-}
-
-.fan-layout[data-ready]:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
-  border-radius: var(--radius-md);
-}
-
-.fan-card {
-  /* Containing block for the optional whole-card link in the no-JS grid. */
-  position: relative;
-}
-
-.fan-layout[data-ready] .fan-card {
-  position: absolute;
-  top: 36px; /* TOP in lib/fan-layout.ts: headroom for the hover lift */
-  left: 50%;
-  width: var(--fan-card-w);
-  /* Centred with a margin rather than a transform, so GSAP owns transform
-     outright and the card is in place on the frame before the first tween. */
-  margin-left: calc(var(--fan-card-w) / -2);
-  /* Pivot at the bottom, like cards held in a hand, so the tilt splays rather
-     than swings the whole card sideways. */
-  transform-origin: 50% 100%;
-  will-change: transform, opacity;
-}
-
-/* Whole-card link, for a card with no call-to-action of its own. It covers the
-   card so the whole face clicks, which also means anything interactive inside
-   has to be lifted over it, or the link swallows those clicks. */
-.fan-stretched {
-  position: absolute;
-  inset: 0;
-}
-
-.fan-card :is(a, button):not(.fan-stretched) {
-  position: relative;
-  z-index: 1;
-}
-
-.fan-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 22px;
-}
-
-.fan-dots {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* Square, small, and neutral until active: the dots sit under a section of
-   full-width cards and a row of coloured pills would pull focus from them. */
-.fan-dot {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-text) 24%, transparent);
-  cursor: pointer;
-  transition: background 180ms var(--ease-std), width 180ms var(--ease-std);
-}
-
-.fan-dot[aria-current] {
-  width: 22px;
-  background: var(--color-accent);
-}
-
-.fan-dot:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
 }
 
 /* Marquee rows */
