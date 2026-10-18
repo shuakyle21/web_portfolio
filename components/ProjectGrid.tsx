@@ -2,6 +2,7 @@ import Image from "next/image";
 import { work, type Work } from "@/lib/data/work";
 import { ImageSlot } from "./ImageSlot";
 import { ProjectCard } from "./ui/project-card";
+import { ProjectCarousel } from "./ProjectCarousel";
 import { Reveal } from "./Reveal";
 
 const mono = { fontFamily: "var(--font-mono)" } as const;
@@ -198,12 +199,13 @@ export function ProjectGrid() {
       </p>
       {/* Every card is server-rendered, so the titles, blurbs, outcomes, tags
           and links are all in the document — with real screenshots, or the
-          terminal panels for the projects that have none. */}
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          terminal panels for the projects that have none. The row scrolls
+          straight sideways; nothing is rotated. */}
+      <ProjectCarousel label="Projects">
         {work.map((item) => (
           <WorkCard key={item.slug} item={item} />
         ))}
-      </div>
+      </ProjectCarousel>
     </section>
   );
 }
