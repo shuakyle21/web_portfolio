@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* ── shadcn/ui theme bridge ──
+   Components in components/ui/ speak shadcn's token names (bg-card,
+   text-primary, text-muted-foreground). Mapping those names onto the Nocturne
+   palette below keeps a pasted shadcn component on the site's colours, instead
+   of it needing a second theme block to live beside them. */
+@theme {
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-text);
+  --color-primary: var(--color-accent);
+  --color-muted-foreground: var(--color-neutral-500);
+  /* Mirrors the Nocturne easing further down, so a Tailwind component's
+     `ease-out` is the same curve as every other transition on the site. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 /* ── Nocturne design system tokens (ported from design-reference/_ds/…/styles.css) ── */
 :root {
   --color-bg: #161826;
@@ -609,7 +624,6 @@ textarea.input {
   font-size: 13px;
   text-decoration: none;
   box-shadow: var(--shadow-md);
-  transition: top 160ms var(--ease-std);
 }
 .skip-link:focus-visible {
   top: 12px;
@@ -722,6 +736,56 @@ textarea.input {
     opacity 620ms var(--ease-out),
     transform 620ms var(--ease-out),
     filter 620ms ease;
+}
+
+/* Projects carousel: one straight row of full project cards. No rotation and no
+   scaling — the only movement is horizontal travel — and an edge fades only
+   while it is hiding cards. */
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity; /* mandatory fights a mouse wheel */
+  scroll-padding-inline: 2px;
+  padding-bottom: 6px;
+  /* Restyled, not hidden: an invisible scrollbar is how a row of cards goes
+     undiscovered on a mouse. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-divider) transparent;
+}
+
+.carousel-track > * {
+  /* 31%, not 33%: three cards plus the gaps leave a sliver of the fourth
+     showing. The peek past the fade is what says the row scrolls. */
+  flex: 0 0 clamp(260px, 31%, 380px);
+  scroll-snap-align: start;
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: var(--color-divider);
+  border-radius: 999px;
+}
+
+.carousel-track:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
 }
 
 /* Marquee rows */

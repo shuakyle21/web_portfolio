@@ -149,7 +149,7 @@ export const work: Work[] = [
         "NAMRIA shapefiles",
         "Forecasting",
       ],
-      citation: "IJLTEMAS Vol. XV Issue VI · DOI: 10.51583/IJLTEMAS.2026.150600192",
+      citation: "IJLTEMAS Vol. XV Issue VI, pp. 2621–2632 · DOI: 10.51583/IJLTEMAS.2026.150600192",
       hero: {
         slotId: "cs-hero",
         aspect: "16/9",
@@ -387,6 +387,167 @@ export const work: Work[] = [
       kind: "slot",
       slotId: "work-records",
       placeholder: "Records or compliance documentation (redacted)",
+    },
+  },
+  {
+    slug: "nenita-pos",
+    title: "Nenita Farm Lechon Haus Restaurant Management System",
+    status: "Tooling",
+    statusStyle: "accent",
+    blurb:
+      "Order-to-receipt system built for Nenita Farm Lechon Haus and Catering Services — React 19 on Vite, Supabase behind row-level security policies, sales trends charted with Recharts, and receipts, daily reconciliation and payroll reports generated as PDFs in-app. Past the point of sale it carries inventory and menu management, staff scheduling, financial reporting and catering bookings.",
+    outcome:
+      "Covers the shop floor end to end: orders, bookings, GCash payments, Senior/PWD discounts, payroll and an offline paper-POS import.",
+    tags: ["React 19", "Vite", "Supabase", "PostgreSQL RLS", "PDF reporting"],
+    links: [
+      {
+        label: "Live site",
+        href: "https://nenitafarmlechonhausrms.app",
+        kind: "primary",
+      },
+      {
+        label: "Source",
+        href: "https://github.com/shuakyle21/nenitafarm-lechonhaus",
+        kind: "github",
+      },
+    ],
+    visual: {
+      kind: "image",
+      src: "/nenitafarm-lechonhaus.jpg",
+      alt: "Nenita Farm Lechon Haus POS terminal: an empty order summary beside a menu grid of lechon, sisig and party tray items with prices",
+      width: 1600,
+      height: 1000,
+    },
+  },
+  {
+    slug: "jdvp-enrollment-dashboard",
+    title: "JDVP enrollment dashboard",
+    status: "Dashboard",
+    statusStyle: "accent",
+    blurb:
+      "A Looker Studio dashboard consolidating JDVP enrollment reports for participating schools: total enrollment, learner demographics, barangay-level distribution, client classifications and training status in one live view.",
+    outcome: "Enrollment across participating schools read from one dashboard.",
+    tags: ["Looker Studio", "Enrollment reporting", "Demographics"],
+    links: [
+      {
+        label: "Live dashboard",
+        href: "https://datastudio.google.com/reporting/b8c0030c-04c4-471f-837c-1e0778532267",
+        kind: "primary",
+      },
+    ],
+    visual: {
+      kind: "slot",
+      slotId: "work-jdvp",
+      placeholder: "JDVP dashboard screenshot",
+    },
+  },
+  {
+    slug: "tvi-cams",
+    title: "TVI-CAMS — TESDA compliance & attendance manager",
+    status: "Tooling",
+    statusStyle: "accent",
+    blurb:
+      "A multi-tenant compliance and document tracker for TVIs running TESDA scholarship programmes. Each school’s batches move through the internal lifecycle — AOU, NTP, TIP, Training, Assessment, Billing — while a per-programme document checklist holds every required file at missing, pending, submitted or verified. Clerk handles sign-in for Admin, Coordinator, Trainer and Viewer roles, and Supabase row-level security scopes every query to the signed-in school. Billing documents generate only when the compound gate passes: training progress at or above 80% and every required document verified. It stays an internal working layer by design — official records remain in TESDA’s own SIS, T2MIS and BSRS.",
+    outcome: "Billing gated on verified documents rather than on a calendar date.",
+    tags: ["Next.js 16", "Clerk", "Supabase RLS", "Drizzle ORM", "PostgreSQL"],
+    links: [
+      {
+        label: "View repository",
+        href: "https://github.com/shuakyle21/tesda-compliance-manager",
+        kind: "github",
+      },
+    ],
+    visual: {
+      kind: "image",
+      src: "/tvi-cams.jpg",
+      alt: "TVI-CAMS sign-in page: a Continue with Google button above email and password fields and a demo-account option",
+      width: 1600,
+      height: 902,
+    },
+  },
+  {
+    slug: "job-tracker-dashboard",
+    title: "Job Tracker",
+    status: "Workflow",
+    statusStyle: "accent",
+    blurb:
+      "Job applications tracked without a spreadsheet. n8n polls Gmail every fifteen minutes, classifies each confirmation or status update with pattern rules, and upserts one row per application into Airtable. Only when the rules fail does an LLM get one attempt, capped at medium confidence so it can never override a rules match. Rows are keyed on company and job title, so a hand-typed entry and a generated one are the same application; a corrected status is never overwritten or regressed, and an email that cannot be classified lands in Needs Review rather than poisoning the feed. An Airtable webhook triggers a GitHub Actions rebuild within seconds, and an hourly health check compares the live n8n instance against the repo and emails when anything is stuck or drifted.",
+    outcome: "A status change in Gmail reaches the live dashboard in under a minute.",
+    tags: ["n8n", "Gmail API", "Airtable", "GitHub Actions", "Vercel"],
+    links: [
+      {
+        label: "Live dashboard",
+        href: "https://job-tracker-dashboard-orcin.vercel.app",
+        kind: "primary",
+      },
+      {
+        label: "View repository",
+        href: "https://github.com/shuakyle21/job-tracker-dashboard",
+        kind: "github",
+      },
+    ],
+    visual: {
+      kind: "image",
+      src: "/job-tracker.jpg",
+      alt: "Job Search Analytics Dashboard: 151 applications sent, a 33.1% reply rate, 5 interviews reached, and a stage-flow diagram running from Applied through to Offer",
+      width: 1600,
+      height: 951,
+    },
+  },
+  {
+    slug: "t2mis-encoder",
+    title: "T2MIS Encoder",
+    status: "Tooling",
+    statusStyle: "accent",
+    blurb:
+      "A PySide6 desktop tool that takes the verified masterlist and fills TESDA’s T2MIS learner registration form row by row with Selenium — while a human operator reviews and submits every record. Three stages: encoding from a masterlist CSV, enrollment against an enrollees CSV, and offline attendance-sheet generation as DOCX. The CSV preview shows the first 500 rows with a per-row status — queued, filling, review, done, failed — so the operator can see where a run stands, and a legacy CLI is kept for scripted runs.",
+    outcome: "Data entry becomes review-and-submit instead of type-and-check.",
+    tags: ["Python 3.12", "PySide6", "Selenium", "DOCX generation"],
+    links: [
+      {
+        label: "View repository",
+        href: "https://github.com/shuakyle21/T2MIS-Data-Entry-Automation-Tool",
+        kind: "github",
+      },
+    ],
+    visual: {
+      kind: "image",
+      src: "/t2mis-encoder.jpg",
+      alt: "T2MIS Encoder main window in Stage 1 — Encoding: a preview of the first 500 rows from registrants.sample.csv, a run log, and Start, Next, Retry, Skip and Stop controls",
+      width: 1600,
+      height: 1123,
+      // 1.43:1 source in a 16:9 slot — cover would crop ~10% off the top and
+      // bottom, cutting the stage header and the Start/Stop row. Letterbox.
+      fit: "contain",
+    },
+  },
+  {
+    slug: "stride-running-club",
+    title: "Stride Running Club",
+    status: "Tooling",
+    statusStyle: "accent",
+    blurb:
+      "A full-stack app for running communities: group runs with distance, pace category and live RSVP headcounts, verified routes on interactive Leaflet GPS maps with elevation profiles, and a filterable club roster carrying pacer badges and session counts. React 19 and Tailwind v4 on the front, Express and Drizzle over PostgreSQL behind it, with Firebase Authentication and Google OAuth handling sign-in.",
+    outcome: "Route discovery, RSVP coordination and club rostering in one app.",
+    tags: ["React 19", "TypeScript", "Firebase Auth", "Leaflet", "Drizzle ORM"],
+    links: [
+      {
+        label: "Live site",
+        href: "https://runclub-connect.ai.studio/",
+        kind: "primary",
+      },
+      {
+        label: "View repository",
+        href: "https://github.com/shuakyle21/running-club-firebase-studio",
+        kind: "github",
+      },
+    ],
+    visual: {
+      kind: "image",
+      src: "/stride-running-club.jpg",
+      alt: "Stride Run Club home page: a bold headline above upcoming group runs filtered by pace and distance",
+      width: 1600,
+      height: 889,
     },
   },
 ];

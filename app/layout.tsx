@@ -5,6 +5,7 @@ import { profile } from "@/lib/data/profile";
 import { links } from "@/lib/data/links";
 import "./globals.css";
 import { siteUrl } from "@/lib/site";
+import { jsonLd } from "@/lib/json-ld";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const spaceGrotesk = Space_Grotesk({
@@ -83,7 +84,7 @@ export default function RootLayout({
         </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd(personJsonLd) }}
         />
         {children}
         <SpeedInsights />

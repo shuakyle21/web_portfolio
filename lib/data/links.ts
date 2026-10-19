@@ -6,4 +6,5 @@ export const links = {
   credly: "https://www.credly.com/users/joshua-klyne-pudadera",
   substack: "https://substack.com/@joshuaklynepudadera",
   doi: "https://doi.org/10.51583/IJLTEMAS.2026.150600192",
+  ijltemasArticle: "https://ijltemas.in/submission/online/article/view/5359",
 };

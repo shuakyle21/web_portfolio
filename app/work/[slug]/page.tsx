@@ -8,6 +8,8 @@ import { profile } from "@/lib/data/profile";
 import { ImageSlot } from "@/components/ImageSlot";
 import { Footer } from "@/components/Footer";
 import { BrandMark } from "@/components/icons";
+import { jsonLd } from "@/lib/json-ld";
+import { siteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
   return work.filter((w) => w.caseStudy).map((w) => ({ slug: w.slug }));
@@ -25,6 +27,9 @@ export async function generateMetadata({
   return {
     title: `${item.title} — case study`,
     description: `${item.blurb} ${item.outcome}`,
+    // Without this the case study inherits the homepage canonical and tells
+    // search engines every case study page is the same document.
+    alternates: { canonical: `${siteUrl}/work/${slug}` },
   };
 }
 
@@ -89,7 +94,7 @@ export default async function CaseStudyPage({
     >
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(articleJsonLd) }}
       />
       <header
         style={{

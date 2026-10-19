@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 import { ratingSchema } from "@/lib/rating-schema";
+import { clientKey, isRateLimited } from "@/lib/rate-limit";
 
 const payloadSchema = ratingSchema.extend({
   company: z.string().optional(), // honeypot — humans never fill this
@@ -9,6 +10,13 @@ const payloadSchema = ratingSchema.extend({
 });
 
 export async function POST(req: Request) {
+  // Before the body is read: cheapest rejection, and the only control here that
+  // a script cannot opt out of. `company` and `startedAt` below are both
+  // optional and client-supplied, so omitting them skips that whole check.
+  if (isRateLimited(clientKey(req))) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   let body: unknown;
   try {
     body = await req.json();
@@ -18,10 +26,10 @@ export async function POST(req: Request) {
 
   const parsed = payloadSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Validation failed", issues: parsed.error.issues },
-      { status: 400 },
-    );
+    // No `issues` echoed back: the client validates with the same schema and
+    // only checks res.ok, so returning them describes the schema to a probe
+    // and helps nobody legitimate.
+    return NextResponse.json({ error: "Validation failed" }, { status: 400 });
   }
   const { rating, comment, company, startedAt } = parsed.data;
 
@@ -59,7 +67,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // No mail provider configured (local/dev): accept and log server-side.
-  console.log("[rate] rating received", { rating, comment });
+  // No mail provider configured (local/dev): accept. Deliberately does not log
+  // the comment — that would put visitor text in logs if prod ever loses the key.
+  console.log("[rate] rating received (no mail provider configured)");
   return NextResponse.json({ ok: true });
 }

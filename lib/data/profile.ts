@@ -10,7 +10,7 @@ export const profile = {
   location: "Banga, South Cotabato, Philippines",
   email: "klynejoshua13@gmail.com",
   phone: "0939 705 8119",
-  resumeUrl: "/CV_research.pdf",
+  resumeUrl: "/Joshua-Pudadera-Resume.pdf",
   intro: [
     "I work at the point where data becomes a decision: dashboards and reports that people actually read, and the backend and automation underneath that keep them current without anyone re-typing a number.",
     "Day to day I track a Scholarship program with status as Enrolled, Graduated, Assessed, Certified and Employed. Alongside that I'm interning as an AI backend engineer, and as a published first-author researcher I've run the full cycle of turning raw records into a conclusion that holds up when someone checks it.",
@@ -45,7 +45,7 @@ export const profile = {
     "Leveraging AI for Text Analysis: NLP Using Orange Data Mining",
   ],
   education: {
-    degree: "Bachelor of Science in Computer Science",
+    degree: "Bachelor of Science in Computer Science (GPA 1.67)",
     college: "College of Engineering, Architecture and Computing",
     university: "Notre Dame of Marbel University",
     years: "2021–2025",

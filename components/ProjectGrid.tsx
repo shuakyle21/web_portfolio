@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { work, type Work } from "@/lib/data/work";
 import { ImageSlot } from "./ImageSlot";
+import { ProjectCard } from "./ui/project-card";
+import { ProjectCarousel } from "./ProjectCarousel";
 import { Reveal } from "./Reveal";
-import { GitHubIcon } from "./icons";
 
 const mono = { fontFamily: "var(--font-mono)" } as const;
 
@@ -150,114 +150,40 @@ function statusTagClass(style: Work["statusStyle"]) {
   return "tag tag-neutral";
 }
 
-function ProjectCard({ item }: { item: Work }) {
+function WorkCard({ item }: { item: Work }) {
   return (
-    <article
-      className="card elev-sm card-lift card-lift-5"
-      style={{ padding: 0, overflow: "hidden" }}
+    <ProjectCard
+      media={<CardVisual visual={item.visual} />}
+      title={item.title}
+      description={item.blurb}
+      badge={
+        <span className={statusTagClass(item.statusStyle)} style={{ flex: "none" }}>
+          {item.status}
+        </span>
+      }
+      links={item.links}
     >
-      <CardVisual visual={item.visual} />
-      {/* flex:1 lets this fill the stretched grid row, which is what gives the
-          CTA row below a gap to push against with margin-top:auto. */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 11, padding: 20, flex: 1 }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            gap: 10,
-          }}
-        >
-          <h3 className="card-title" style={{ fontSize: 19 }}>
-            {item.title}
-          </h3>
-          <span className={statusTagClass(item.statusStyle)} style={{ flex: "none" }}>
-            {item.status}
+      {/* Outcome and tags are this app's card content, so they come through the
+          card's children rather than widening its API. */}
+      <p
+        style={{
+          margin: "11px 0 0",
+          ...mono,
+          fontSize: 12,
+          color: "var(--color-accent-300)",
+          lineHeight: 1.6,
+        }}
+      >
+        → {item.outcome}
+      </p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 11 }}>
+        {item.tags.map((tag) => (
+          <span key={tag} className="tag tag-neutral">
+            {tag}
           </span>
-        </div>
-        {/* .card-body carries flex:1 globally; neutralise it here so the free
-            space collects at the CTA row instead of being eaten by the blurb. */}
-        <p className="card-body" style={{ fontSize: 14, flex: "none" }}>
-          {item.blurb}
-        </p>
-        <p
-          style={{
-            margin: 0,
-            ...mono,
-            fontSize: 12,
-            color: "var(--color-accent-300)",
-            lineHeight: 1.6,
-          }}
-        >
-          → {item.outcome}
-        </p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-          {item.tags.map((tag) => (
-            <span key={tag} className="tag tag-neutral">
-              {tag}
-            </span>
-          ))}
-        </div>
-        {item.links.length > 0 && (
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              gap: 8,
-              // auto, not 6px: pins the CTA to the card bottom so buttons line
-              // up across a row regardless of how long the blurb above is.
-              marginTop: "auto",
-              paddingTop: 6,
-            }}
-          >
-            {item.links.map((link) =>
-              link.kind === "github" ? (
-                <a
-                  key={link.href}
-                  className="btn btn-secondary btn-lift"
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    alignSelf: "flex-start",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 8,
-                    padding: "10px 16px",
-                    fontSize: 13,
-                  }}
-                >
-                  <GitHubIcon size={16} />
-                  <span>{link.label}</span>
-                  <span style={{ ...mono, fontSize: 12, opacity: 0.62 }}>↗</span>
-                </a>
-              ) : link.href.startsWith("/") ? (
-                <Link
-                  key={link.href}
-                  className={`btn btn-${link.kind ?? "secondary"}`}
-                  href={link.href}
-                  style={{ fontSize: 13 }}
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  className={`btn btn-${link.kind ?? "secondary"}`}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ fontSize: 13 }}
-                >
-                  {link.label}
-                </a>
-              ),
-            )}
-          </div>
-        )}
+        ))}
       </div>
-    </article>
+    </ProjectCard>
   );
 }
 
@@ -269,19 +195,17 @@ export function ProjectGrid() {
         Projects
       </Reveal>
       <p className="text-muted prose" style={{ maxWidth: "54ch", marginBottom: 34 }}>
-        Ten projects, with what each one actually produced.
+        {work.length} projects, with what each one actually produced.
       </p>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-          gap: 20,
-        }}
-      >
+      {/* Every card is server-rendered, so the titles, blurbs, outcomes, tags
+          and links are all in the document — with real screenshots, or the
+          terminal panels for the projects that have none. The row scrolls
+          straight sideways; nothing is rotated. */}
+      <ProjectCarousel label="Projects">
         {work.map((item) => (
-          <ProjectCard key={item.slug} item={item} />
+          <WorkCard key={item.slug} item={item} />
         ))}
-      </div>
+      </ProjectCarousel>
     </section>
   );
 }
